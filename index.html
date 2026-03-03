@@ -986,12 +986,16 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    filter: blur(5px);
+    transition: filter 0.4s ease, transform 0.5s ease;
   }
   
-  .journey-card:hover .journey-card-bg,
+  .journey-card:hover .journey-card-bg {
+    transform: scale(1.1);
+  }
   .journey-card.active .journey-card-bg {
     transform: scale(1.1);
+    filter: blur(0);
   }
   
   .journey-card-overlay {
@@ -2439,10 +2443,20 @@
   if (carousel && prevBtn && nextBtn) {
     const getScrollAmount = () => cards[0] ? cards[0].offsetWidth + 24 : 344;
 
+    const setActiveCard = (index) => {
+      cards.forEach((c, i) => c.classList.toggle('active', i === index));
+    };
+
     prevBtn.addEventListener('click', () => {
+      const activeIndex = Array.from(cards).findIndex(c => c.classList.contains('active'));
+      const nextIndex = Math.max(0, activeIndex - 1);
+      setActiveCard(nextIndex);
       carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
     nextBtn.addEventListener('click', () => {
+      const activeIndex = Array.from(cards).findIndex(c => c.classList.contains('active'));
+      const nextIndex = Math.min(cards.length - 1, activeIndex + 1);
+      setActiveCard(nextIndex);
       carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
     });
 
