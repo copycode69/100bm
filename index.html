@@ -164,34 +164,30 @@
     display: flex; 
     flex-direction: column; 
     justify-content: center;
-    padding: 120px 40px 80px; 
+    padding: 40px 24px 40px; 
     position: relative; 
     overflow: hidden;
-    background: var(--black);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f0f 50%, #0d0a0a 100%);
+    box-sizing: border-box;
   }
   
-  .hero-bg-text {
-    position: absolute; 
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(180px, 28vw, 450px);
-    font-weight: 800;
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(245, 41, 41, 0.15);
-    line-height: 1; 
-    user-select: none; 
-    pointer-events: none; 
-    white-space: nowrap;
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse 80% 50% at 20% 50%, rgba(245, 41, 41, 0.08) 0%, transparent 50%);
+    pointer-events: none;
     z-index: 0;
   }
   
   .hero-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 60px;
+    gap: 40px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -202,20 +198,19 @@
   .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 600px;
-    flex: 1;
+    min-width: 0;
   }
 
   .hero-right {
-    flex-shrink: 0;
-    flex: 1;
-    min-width: 400px;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
+    min-width: 0;
     opacity: 0;
     animation: fadeInUp 0.8s 0.5s ease forwards;
+  }
+  .hero-logo {
+    position: relative;
   }
   .hero-logo img {
     width: 100%;
@@ -241,35 +236,35 @@
   
   .hero-eyebrow {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 13px; 
+    font-size: 12px; 
     font-weight: 500;
     letter-spacing: 0.3em; 
     text-transform: uppercase; 
     color: var(--scarlet); 
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
   }
   
   .hero-brand {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(20px, 3vw, 28px); 
+    font-size: clamp(18px, 2.5vw, 24px); 
     font-weight: 600;
     letter-spacing: 0.2em; 
     text-transform: uppercase; 
     color: var(--white); 
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     opacity: 0;
     animation: fadeInUp 0.8s 0.2s ease forwards;
   }
   
   .hero-tagline {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(56px, 9vw, 120px); 
+    font-size: clamp(40px, 7vw, 90px); 
     font-weight: 800;
     color: var(--white); 
     line-height: 0.9; 
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     text-transform: uppercase;
     opacity: 0;
     animation: fadeInUp 0.8s 0.4s ease forwards;
@@ -282,12 +277,12 @@
   
   .hero-sub {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 19px; 
+    font-size: 17px; 
     font-weight: 300;
     color: rgba(255, 255, 255, 0.9); 
-    max-width: 520px; 
-    line-height: 1.7; 
-    margin-bottom: 48px;
+    max-width: 100%; 
+    line-height: 1.6; 
+    margin-bottom: 32px;
     opacity: 0;
     animation: fadeInUp 0.8s 0.6s ease forwards;
   }
@@ -296,88 +291,259 @@
     opacity: 0;
     animation: fadeInUp 0.8s 0.8s ease forwards;
   }
+  
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .hero-cta .btn-primary {
+    box-shadow: 0 4px 24px rgba(245, 41, 41, 0.4);
+  }
+  
+  .hero-cta .btn-primary:hover {
+    box-shadow: 0 12px 40px rgba(245, 41, 41, 0.5);
+  }
+  
+  .hero-cta .btn-outline {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--white);
+  }
+  
+  .hero-cta .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+  }
+  
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.05em;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeInUp 0.8s 1s ease forwards;
+  }
+  
+  .hero-badge strong {
+    color: var(--scarlet);
+  }
+  
+  .hero-social-proof {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    opacity: 0;
+    animation: fadeInUp 0.8s 1s ease forwards;
+  }
+  
+  .hero-avatars {
+    display: flex;
+  }
+  
+  .hero-avatars img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--black);
+    margin-left: -14px;
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+  
+  .hero-avatars img:first-child {
+    margin-left: 0;
+  }
+  
+  .hero-avatars img:hover {
+    transform: scale(1.15);
+    z-index: 2;
+  }
+  
+  .hero-social-text {
+    font-family: 'Fira Sans', sans-serif;
+  }
+  
+  .hero-social-text strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  
+  .hero-social-text span {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .hero-right-cta {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 20px;
+    background: var(--scarlet);
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .hero-right-cta:hover {
+    background: var(--white);
+    color: var(--scarlet);
+    transform: scale(1.05);
+  }
 
   /* ══════════════════════════
      SECTION 2 — CLAIM YOUR AUTHORITY
   ══════════════════════════ */
   .authority {
-    background: var(--beige-02); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 140px 40px;
     position: relative;
+    overflow: hidden;
+  }
+  
+  .authority::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(135deg, rgba(245, 41, 41, 0.08) 0%, rgba(245, 41, 41, 0.02) 40%, transparent 70%);
+    transform: rotate(-12deg);
+    pointer-events: none;
   }
   
   .authority-grid {
-    display: grid; 
-    grid-template-columns: 1.2fr 1fr; 
-    gap: 100px; 
-    align-items: center; 
-    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 32px;
+    max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   
-  .authority-left h2 { 
-    color: var(--bold-black);
-    font-size: clamp(48px, 6vw, 80px);
+  .authority-left {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: center;
+  }
+  
+  .authority .eyebrow {
+    color: var(--scarlet);
+  }
+  
+  .authority-left h2 {
+    color: var(--white);
+    font-size: clamp(42px, 5vw, 72px);
+  }
+  
+  .authority-left h2 .blink-word {
+    color: var(--scarlet);
   }
   
   .authority-left p { 
     font-family: 'Fira Sans', sans-serif;
-    font-size: 19px; 
+    font-size: 18px; 
     line-height: 1.8; 
-    color: var(--bold-black); 
-    margin-top: 28px; 
-    max-width: 500px;
+    color: rgba(255, 255, 255, 0.9); 
+    margin-top: 24px; 
+    max-width: 480px;
     font-weight: 300;
   }
   
   .authority-coda {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 20px; 
+    font-size: 18px; 
     font-weight: 700;
     color: var(--scarlet); 
-    margin-top: 40px;
+    margin-top: 36px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+  }
+  
+  .authority-right {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-content: center;
   }
   
   .shift-list { 
     list-style: none;
-    background: var(--white);
-    padding: 48px;
-    border-left: 4px solid var(--scarlet);
+    display: contents;
   }
   
   .shift-list li {
-    display: flex; 
-    align-items: center; 
-    gap: 24px;
-    padding: 24px 0; 
-    border-bottom: 1px solid var(--beige-02);
-    font-size: 17px;
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
   
   .shift-list li:hover {
-    padding-left: 12px;
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--scarlet);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.2);
   }
   
-  .shift-list li:last-child { 
-    border-bottom: none; 
-    padding-bottom: 0;
-  }
+  .shift-list li:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .shift-list li:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .shift-list li:nth-child(3) { grid-column: 1; grid-row: 2; }
+  .shift-list li:nth-child(4) { grid-column: 2; grid-row: 2; }
   
   .shift-from {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 300;
-    color: var(--bold-black); 
-    min-width: 100px;
-    font-size: 15px;
-    opacity: 0.6;
+    color: rgba(255, 255, 255, 0.6); 
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .shift-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
   }
   
   .shift-arrow { 
     color: var(--scarlet); 
-    font-size: 20px; 
+    font-size: 18px; 
     flex-shrink: 0;
     font-family: 'Gemunu Libre', sans-serif;
     font-weight: 700;
@@ -385,16 +551,17 @@
   }
   
   .shift-list li:hover .shift-arrow {
-    transform: translateX(8px);
+    transform: translateX(6px);
   }
   
   .shift-to { 
     font-family: 'Gemunu Libre', sans-serif;
     font-weight: 700; 
-    color: var(--bold-black);
-    font-size: 18px;
+    color: var(--white);
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+    line-height: 1.2;
   }
 
   /* Blinking word animation */
@@ -437,8 +604,21 @@
      SECTION 3 — BREAKTHROUGH
   ══════════════════════════ */
   .breakthrough { 
-    background: var(--white); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .breakthrough::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 50%;
+    height: 80%;
+    background: linear-gradient(315deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .breakthrough-header { 
@@ -447,18 +627,28 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .breakthrough-header .eyebrow {
+    color: var(--scarlet);
   }
   
   .breakthrough-header h2 { 
     margin-bottom: 20px; 
-    color: var(--bold-black);
+    color: var(--white);
   }
   
-  .breakthrough-header .sub { 
+  .breakthrough-header .sub,
+  .breakthrough-header .body-text { 
     font-family: 'Fira Sans', sans-serif;
     font-size: 19px; 
-    color: var(--bold-black);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 300;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Cards */
@@ -468,15 +658,18 @@
     gap: 24px; 
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   
   .what-card { 
-    background: var(--beige-01); 
+    background: rgba(255, 255, 255, 0.06);
     padding: 48px 40px;
-    border: 2px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
   
   .what-card::before {
@@ -494,8 +687,9 @@
   
   .what-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.15);
     border-color: var(--scarlet);
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .what-card:hover::before {
@@ -512,7 +706,7 @@
     font-size: 56px;
     font-weight: 800;
     color: var(--scarlet);
-    opacity: 0.1;
+    opacity: 0.15;
     line-height: 1;
     transition: all 0.3s ease;
   }
@@ -530,7 +724,7 @@
     font-family: 'Gemunu Libre', sans-serif;
     font-size: 26px; 
     font-weight: 700;
-    color: var(--bold-black); 
+    color: var(--white); 
     margin-bottom: 16px;
     margin-top: 20px;
     text-transform: uppercase;
@@ -541,7 +735,7 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 16px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.7; 
     margin-bottom: 24px;
   }
@@ -550,80 +744,119 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 14px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.6); 
     font-style: italic;
     padding-top: 20px; 
-    border-top: 1px solid rgba(0,0,0,0.1);
-    opacity: 0.7;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   /* ══════════════════════════
      SECTION 4 — IS THIS YOU
   ══════════════════════════ */
   .for-who { 
-    background: var(--brand-bg);
-    padding: 140px 40px; 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
+    padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .for-who::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 40%;
+    height: 60%;
+    background: linear-gradient(135deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .for-who-inner { 
-    display: grid; 
-    grid-template-columns: 1fr 1.2fr; 
-    gap: 100px; 
-    align-items: start;
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .for-who-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  
+  .for-who .eyebrow {
+    color: var(--scarlet);
   }
   
   .for-who h2 { 
-    color: var(--bold-black);
-    font-size: clamp(48px, 6vw, 80px);
+    color: var(--white);
+    font-size: clamp(42px, 5vw, 72px);
   }
   
   .for-who .intro { 
     font-family: 'Fira Sans', sans-serif;
-    font-size: 22px; 
+    font-size: 20px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.7; 
-    margin-top: 28px;
+    margin-top: 24px;
     font-style: italic;
+  }
+  
+  .for-who-requirements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .guardrail-sm {
+    display: inline-flex; 
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    background: var(--scarlet); 
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 14px; 
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
   
   .checklist { 
     list-style: none; 
-    margin-top: 40px;
-    background: var(--white);
-    padding: 48px;
-    border: 2px solid var(--beige-02);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
   }
   
   .checklist li {
     display: flex; 
     gap: 20px; 
     align-items: flex-start;
-    padding: 24px 0; 
-    font-size: 17px; 
+    padding: 28px 24px;
+    font-size: 16px; 
     font-weight: 300;
-    color: var(--bold-black);
-    line-height: 1.7; 
-    border-bottom: 1px solid var(--beige-02);
-    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.4s ease;
   }
   
   .checklist li:hover {
-    padding-left: 12px;
-  }
-  
-  .checklist li:last-child { 
-    border-bottom: none; 
-    padding-bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--scarlet);
+    transform: translateY(-4px);
   }
   
   .check { 
     color: var(--scarlet); 
     flex-shrink: 0; 
     margin-top: 2px; 
-    font-size: 20px;
+    font-size: 18px;
     width: 28px;
     height: 28px;
     display: flex;
@@ -634,29 +867,26 @@
     font-family: 'Gemunu Libre', sans-serif;
     font-weight: 700;
   }
-  
-  .guardrail-sm {
-    display: inline-flex; 
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 32px; 
-    padding: 16px 24px;
-    background: var(--scarlet); 
-    color: var(--white);
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: 14px; 
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
 
   /* ══════════════════════════
      SECTION 5 — INSIDE THE PROGRAM
   ══════════════════════════ */
   .program { 
-    background: var(--beige-01); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 140px 40px;
     position: relative;
+    overflow: hidden;
+  }
+  
+  .program::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 50%;
+    height: 80%;
+    background: linear-gradient(225deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .program-header { 
@@ -665,59 +895,74 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .program-header .eyebrow {
+    color: var(--scarlet);
   }
   
   .program-header h2 { 
     margin-bottom: 20px; 
-    color: var(--bold-black);
+    color: var(--white);
   }
   
   .program-header p { 
     font-family: 'Fira Sans', sans-serif;
     font-size: 19px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.8;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .program-grid {
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px; 
+    gap: 24px; 
     max-width: 1200px;
-    margin: 0 auto 32px;
+    margin: 0 auto 24px;
+    position: relative;
+    z-index: 1;
   }
   
   .program-grid-3 {
     display: grid; 
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
   }
   
   .prog-card { 
-    background: var(--white); 
+    background: rgba(255, 255, 255, 0.06);
     padding: 48px; 
     display: flex; 
     gap: 28px; 
     align-items: flex-start;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
   
   .prog-card:hover {
     border-color: var(--scarlet);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.15);
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .prog-icon {
     width: 60px; 
     height: 60px; 
     flex-shrink: 0;
-    background: var(--beige-02); 
+    background: rgba(245, 41, 41, 0.15);
     border: 2px solid var(--scarlet);
+    border-radius: 12px;
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -737,7 +982,7 @@
     font-family: 'Gemunu Libre', sans-serif;
     font-size: 24px; 
     font-weight: 700;
-    color: var(--bold-black); 
+    color: var(--white); 
     margin-bottom: 12px;
     text-transform: uppercase;
     line-height: 1.2;
@@ -747,66 +992,196 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 16px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.8;
+  }
+
+  /* ══════════════════════════
+     SECTION 5.5 — CASE STUDIES OF SUCCESS
+  ══════════════════════════ */
+  .case-studies {
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .case-studies-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .case-studies-num {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(72px, 12vw, 120px);
+    font-weight: 800;
+    color: var(--scarlet);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  
+  .case-studies h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  
+  .case-studies-desc {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+  
+  .case-studies-desc a {
+    color: var(--scarlet);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .case-studies-desc a:hover {
+    text-decoration: none;
+  }
+  
+  .case-studies .btn-outline {
+    border-color: var(--scarlet);
+    color: var(--scarlet);
+  }
+  
+  .case-studies .btn-outline:hover {
+    background: var(--scarlet);
+    color: var(--white);
+  }
+  
+  .case-studies-collage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .case-studies-collage img {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  
+  .case-studies-collage img:nth-child(1) { top: 8%; left: 5%; opacity: 1; }
+  .case-studies-collage img:nth-child(2) { top: 15%; right: 12%; opacity: 0.85; }
+  .case-studies-collage img:nth-child(3) { top: 60%; left: 8%; opacity: 0.7; }
+  .case-studies-collage img:nth-child(4) { bottom: 15%; right: 8%; opacity: 0.9; }
+  .case-studies-collage img:nth-child(5) { top: 25%; left: 15%; opacity: 0.5; }
+  .case-studies-collage img:nth-child(6) { top: 70%; right: 15%; opacity: 0.55; }
+  .case-studies-collage img:nth-child(7) { bottom: 25%; left: 20%; opacity: 0.65; }
+  .case-studies-collage img:nth-child(8) { top: 10%; right: 25%; opacity: 0.45; }
+  .case-studies-collage img:nth-child(9) { bottom: 10%; right: 25%; opacity: 0.6; }
+  .case-studies-collage img:nth-child(10) { top: 45%; left: 3%; opacity: 0.4; }
+  .case-studies-collage img:nth-child(11) { top: 35%; right: 5%; opacity: 0.5; }
+  .case-studies-collage img:nth-child(12) { bottom: 35%; left: 12%; opacity: 0.45; }
+  
+  @media (max-width: 768px) {
+    .case-studies-collage img {
+      width: 90px;
+      height: 90px;
+    }
   }
 
   /* ══════════════════════════
      SECTION 6 — TESTIMONIALS
   ══════════════════════════ */
   .testimonials { 
-    background: var(--white); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonials::before {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -15%;
+    width: 45%;
+    height: 70%;
+    background: linear-gradient(315deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .testimonials-header {
     text-align: center;
     margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .testimonials-header .eyebrow {
+    color: var(--scarlet);
   }
   
   .testimonials h2 { 
     display: inline-block;
-    color: var(--bold-black);
+    color: var(--white);
   }
   
   .t-grid {
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px; 
+    gap: 24px; 
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   
   .t-card { 
-    background: var(--beige-01); 
-    padding: 56px 48px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 48px 40px;
     position: relative;
-    transition: all 0.4s ease;
-    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
   
   .t-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     border-color: var(--scarlet);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.15);
+    background: rgba(255, 255, 255, 0.1);
   }
   
   .t-card::before {
     content: '"';
     position: absolute;
-    top: 32px;
-    right: 40px;
+    top: 24px;
+    right: 32px;
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 140px;
+    font-size: 120px;
     color: var(--scarlet);
-    opacity: 0.08;
+    opacity: 0.12;
     line-height: 1;
     font-weight: 800;
   }
   
   .t-headline {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 28px; 
+    font-size: 26px; 
     font-weight: 700;
     color: var(--scarlet); 
     line-height: 1.3; 
@@ -820,18 +1195,35 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 17px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.9; 
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     position: relative;
     z-index: 1;
+  }
+  
+  .t-author {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .t-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(245, 41, 41, 0.5);
+    flex-shrink: 0;
   }
   
   .t-name {
     font-family: 'Gemunu Libre', sans-serif;
     font-size: 20px; 
     font-weight: 700;
-    color: var(--bold-black);
+    color: var(--white);
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
@@ -840,29 +1232,47 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 15px; 
     font-weight: 300;
-    color: var(--bold-black); 
-    margin-top: 8px;
-    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.7); 
+    margin-top: 4px;
   }
 
   /* ══════════════════════════
      SECTION 7 — ENTRY
   ══════════════════════════ */
   .entry { 
-    background: var(--beige-02); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 140px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .entry::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 40%;
+    height: 60%;
+    background: linear-gradient(135deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .entry-top { 
-    margin-bottom: 80px; 
+    margin-bottom: 64px; 
     text-align: center;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .entry-top .eyebrow {
+    color: var(--scarlet);
   }
   
   .entry-top h2 { 
-    color: var(--bold-black);
+    color: var(--white);
   }
   
   .entry-note {
@@ -870,46 +1280,36 @@
     font-size: 20px; 
     font-weight: 300;
     font-style: italic; 
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     margin-top: 20px;
   }
   
   .steps {
     display: grid; 
     grid-template-columns: repeat(4, 1fr);
-    gap: 0; 
-    max-width: 1400px;
+    gap: 24px; 
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
-  }
-  
-  .steps::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: 12.5%;
-    right: 12.5%;
-    height: 2px;
-    background: var(--scarlet);
-    opacity: 0.2;
-    z-index: 0;
+    z-index: 1;
   }
   
   .step { 
-    padding: 60px 40px; 
-    background: var(--white);
-    border-right: 2px solid var(--beige-02);
+    padding: 48px 32px; 
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     text-align: center;
     position: relative;
-    transition: all 0.4s ease;
-  }
-  
-  .step:last-child { 
-    border-right: none; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   }
   
   .step:hover { 
-    background: var(--beige-01);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--scarlet);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.15);
   }
   
   .step-num {
@@ -924,7 +1324,7 @@
     font-size: 18px; 
     font-weight: 800;
     color: var(--white); 
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     position: relative;
     z-index: 1;
     box-shadow: 0 4px 20px rgba(245, 41, 41, 0.3);
@@ -932,9 +1332,9 @@
   
   .step-title {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 32px; 
+    font-size: 28px; 
     font-weight: 700;
-    color: var(--bold-black); 
+    color: var(--white); 
     margin-bottom: 16px;
     text-transform: uppercase;
   }
@@ -943,7 +1343,7 @@
     font-family: 'Fira Sans', sans-serif;
     font-size: 16px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     line-height: 1.8;
   }
 
@@ -951,7 +1351,7 @@
      SECTION 8 — FINAL CTA
   ══════════════════════════ */
   .final-cta {
-    background: var(--bold-black); 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
     padding: 160px 40px; 
     text-align: center;
     position: relative; 
@@ -965,7 +1365,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(245, 41, 41, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(245, 41, 41, 0.06) 0%, transparent 70%);
     animation: rotate 20s linear infinite;
   }
   
@@ -1042,46 +1442,76 @@
      WEBINAR
   ══════════════════════════ */
   .webinar { 
-    background: var(--beige-01); 
-    padding: 100px 40px; 
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
+    padding: 120px 40px; 
     text-align: center;
-    border-top: 2px solid var(--beige-02);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .webinar::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 50%;
+    height: 80%;
+    background: linear-gradient(315deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
   
   .webinar h3 {
     font-family: 'Gemunu Libre', sans-serif;
     font-size: 48px; 
     font-weight: 700;
-    color: var(--bold-black); 
+    color: var(--white); 
     margin-bottom: 20px;
     text-transform: uppercase;
+    position: relative;
+    z-index: 1;
   }
   
   .webinar-sub {
     font-family: 'Fira Sans', sans-serif;
     font-size: 19px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     max-width: 600px; 
     margin: 0 auto 40px; 
     line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .webinar-explore {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--scarlet);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
   }
   
   .webinar-list {
     list-style: none; 
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: center; 
-    gap: 16px 40px;
-    max-width: 900px; 
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    max-width: 600px; 
     margin: 0 auto 48px;
+    position: relative;
+    z-index: 1;
   }
   
   .webinar-list li {
     font-family: 'Fira Sans', sans-serif;
     font-size: 16px; 
     font-weight: 300;
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.9); 
     position: relative; 
     padding-left: 24px;
     text-align: left;
@@ -1103,9 +1533,16 @@
     font-size: 14px; 
     font-weight: 300;
     font-style: italic; 
-    color: var(--bold-black); 
+    color: rgba(255, 255, 255, 0.6); 
     margin-top: 32px;
-    opacity: 0.7;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .webinar .btn-outline:hover {
+    background: var(--scarlet);
+    color: var(--white);
+    border-color: var(--white);
   }
 
   /* ── FOOTER ── */
@@ -1155,19 +1592,39 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .hero-inner {
-      flex-direction: column;
-    }
-    .hero-right {
-      min-width: 0;
-      max-width: 100%;
+      grid-template-columns: 1fr;
+      gap: 32px;
     }
     .authority-grid { 
-      grid-template-columns: 1fr; 
-      gap: 60px; 
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: 40px;
     }
+    .authority-left {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .authority-right {
+      grid-column: 1;
+      grid-row: 2;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto);
+    }
+    .shift-list li:nth-child(1),
+    .shift-list li:nth-child(2),
+    .shift-list li:nth-child(3),
+    .shift-list li:nth-child(4) {
+      grid-column: 1;
+    }
+    .shift-list li:nth-child(1) { grid-row: 1; }
+    .shift-list li:nth-child(2) { grid-row: 2; }
+    .shift-list li:nth-child(3) { grid-row: 3; }
+    .shift-list li:nth-child(4) { grid-row: 4; }
     .for-who-inner { 
-      grid-template-columns: 1fr; 
-      gap: 60px; 
+      max-width: 100%;
+    }
+    .checklist {
+      grid-template-columns: 1fr;
     }
     .what-grid { 
       grid-template-columns: repeat(2, 1fr); 
@@ -1184,29 +1641,15 @@
     .steps { 
       grid-template-columns: repeat(2, 1fr); 
     }
-    .steps::before { 
-      display: none; 
-    }
-    .step { 
-      border-right: none; 
-      border-bottom: 2px solid var(--beige-02); 
-    }
-    .step:nth-child(2) { 
-      border-right: none; 
-    }
-    .step:nth-child(3),
-    .step:nth-child(4) { 
-      border-bottom: none; 
-    }
   }
   
   @media (max-width: 768px) {
-    .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
+    .hero, .authority, .breakthrough, .for-who, .program, .case-studies, .testimonials, .entry, .final-cta, .webinar { 
       padding: 80px 24px; 
     }
     .hero { 
-      padding: 100px 24px 60px; 
-      min-height: auto;
+      padding: 32px 20px 40px; 
+      min-height: 100vh;
     }
     .hero-inner {
       flex-direction: column;
@@ -1230,15 +1673,7 @@
       grid-template-columns: 1fr; 
     }
     .step { 
-      border-right: none; 
-      border-bottom: 2px solid var(--beige-02); 
       padding: 40px 32px;
-    }
-    .step:last-child { 
-      border-bottom: none; 
-    }
-    .hero-bg-text { 
-      display: none; 
     }
     .shift-list,
     .checklist {
@@ -1319,7 +1754,6 @@
      SECTION 1 — HERO
 ══════════════════════════ -->
 <section class="hero">
-  <div class="hero-bg-text">100</div>
   <div class="hero-inner">
   <div class="hero-content">
     <div class="hero-eyebrow">For women who lead</div>
@@ -1330,15 +1764,33 @@
     </div>
     <p class="hero-sub">A cohort that fast-tracks your growth. Turn a 10-year climb into a 2-year leap.</p>
     <div class="hero-cta">
-      <a href="#apply" class="btn-primary"><span>Request Your Seat</span> →</a>
+      <div class="hero-cta-group">
+        <a href="#apply" class="btn-primary"><span>Request Your Seat</span> →</a>
+        <a href="#program" class="btn-outline">Learn More →</a>
+      </div>
+      <div class="hero-badge">Join <strong>1000+ women</strong> claiming their seat at the table</div>
+      <div class="hero-social-proof">
+        <div class="hero-avatars">
+          <img src="assets/testimonials/susma.png" alt="">
+          <img src="assets/testimonials/ANU.png" alt="">
+          <img src="assets/testimonials/harvinder.png" alt="">
+          <img src="assets/testimonials/minal.png" alt="">
+        </div>
+        <div class="hero-social-text">
+          <strong>Over 1000+ women leaders</strong>
+          <span>growing since 2020</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-logo">
       <img src="120815570.png" alt="100 Board Members">
+      <a href="#testimonials" class="hero-right-cta">See Success Stories</a>
     </div>
     <div class="hero-video-wrap">
       <iframe src="https://www.youtube.com/embed/HPAP0eBHauk?autoplay=1&mute=1" title="100 Board Members" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <a href="#apply" class="hero-right-cta">Apply Now</a>
     </div>
   </div>
   </div>
@@ -1356,12 +1808,14 @@
       <p>Be the woman who refuses to be overlooked, play at the level you belong.</p>
       <p class="authority-coda">You have done the work. Now own the room.</p>
     </div>
+    <div class="authority-right">
     <ul class="shift-list reveal">
-      <li><span class="shift-from">Ignored</span><span class="shift-arrow">→</span><span class="shift-to">Leading</span></li>
-      <li><span class="shift-from">Invisible</span><span class="shift-arrow">→</span><span class="shift-to">Impossible to overlook</span></li>
-      <li><span class="shift-from">Stuck</span><span class="shift-arrow">→</span><span class="shift-to">Unstoppable</span></li>
-      <li><span class="shift-from">Unheard</span><span class="shift-arrow">→</span><span class="shift-to">Undeniable</span></li>
+      <li><span class="shift-from">Ignored</span><div class="shift-row"><span class="shift-arrow">→</span><span class="shift-to">Leading</span></div></li>
+      <li><span class="shift-from">Invisible</span><div class="shift-row"><span class="shift-arrow">→</span><span class="shift-to">Impossible to overlook</span></div></li>
+      <li><span class="shift-from">Stuck</span><div class="shift-row"><span class="shift-arrow">→</span><span class="shift-to">Unstoppable</span></div></li>
+      <li><span class="shift-from">Unheard</span><div class="shift-row"><span class="shift-arrow">→</span><span class="shift-to">Undeniable</span></div></li>
     </ul>
+    </div>
   </div>
 </section>
 
@@ -1415,12 +1869,12 @@
 ══════════════════════════ -->
 <section class="for-who">
   <div class="for-who-inner">
-    <div class="reveal">
+    <div class="for-who-header reveal">
       <span class="eyebrow">Eligibility</span>
       <h2>Is this you?</h2>
       <p class="intro">You're doing more than your title reflects, and it's time that shifted.</p>
     </div>
-    <div class="reveal">
+    <div class="for-who-requirements reveal">
       <div class="guardrail-sm">Minimum 8 years professional experience required</div>
       <ul class="checklist">
         <li><span class="check">✦</span>You're targeting next-level leadership in the next 2–3 years, not just someday.</li>
@@ -1436,7 +1890,7 @@
 <!-- ══════════════════════════
      SECTION 5 — INSIDE THE PROGRAM
 ══════════════════════════ -->
-<section class="program">
+<section class="program" id="program">
   <div class="program-header reveal">
     <span class="eyebrow">Inside the program</span>
     <h2>How Women Claim Power Collectively.</h2>
@@ -1485,9 +1939,36 @@
 
 
 <!-- ══════════════════════════
+     CASE STUDIES OF SUCCESS
+══════════════════════════ -->
+<section class="case-studies">
+  <div class="case-studies-collage">
+    <img src="assets/testimonials/susma.png" alt="">
+    <img src="assets/testimonials/ANU.png" alt="">
+    <img src="assets/testimonials/harvinder.png" alt="">
+    <img src="assets/testimonials/minal.png" alt="">
+    <img src="assets/testimonials/susma.png" alt="">
+    <img src="assets/testimonials/ANU.png" alt="">
+    <img src="assets/testimonials/harvinder.png" alt="">
+    <img src="assets/testimonials/minal.png" alt="">
+    <img src="assets/testimonials/susma.png" alt="">
+    <img src="assets/testimonials/ANU.png" alt="">
+    <img src="assets/testimonials/harvinder.png" alt="">
+    <img src="assets/testimonials/minal.png" alt="">
+  </div>
+  <div class="case-studies-inner reveal">
+    <div class="case-studies-num">1,000+</div>
+    <h2>Case studies of success</h2>
+    <p class="case-studies-desc">100 Board Members has helped women leaders claim their authority and accelerate their careers. Browse success stories and real transformations from women who have taken the leap.</p>
+    <a href="#testimonials" class="btn-outline">Read success stories →</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
      SECTION 6 — TESTIMONIALS
 ══════════════════════════ -->
-<section class="testimonials">
+<section class="testimonials" id="testimonials">
   <div class="testimonials-header reveal">
     <span class="eyebrow">Real results. Real women.</span>
     <h2>In their words.</h2>
@@ -1496,26 +1977,46 @@
     <div class="t-card reveal">
       <div class="t-headline">"I grew more in 3 years than I had in the previous 10."</div>
       <p class="t-body">I started stepping into conversations I used to hesitate to enter. I realized I had been operating below my potential — not because I lacked capability, but because I had never been trained to think at that level.</p>
-      <div class="t-name">Sushma Patil</div>
-      <div class="t-role">Principal Consultant, Infosys</div>
+      <div class="t-author">
+        <img class="t-avatar" src="assets/testimonials/susma.png" alt="Sushma Patil">
+        <div>
+          <div class="t-name">Sushma Patil</div>
+          <div class="t-role">Principal Consultant, Infosys</div>
+        </div>
+      </div>
     </div>
     <div class="t-card reveal">
       <div class="t-headline">"I took on 2x the responsibility and felt steady."</div>
       <p class="t-body">I took on 2x the responsibility and felt steady and confident through the transition. Building my profile changed how I positioned myself — it gave me greater clarity, stronger conviction, and a sharper sense of direction. It directly influenced the kind of roles I was considered for and the conversations I was invited into.</p>
-      <div class="t-name">Anu Kannan</div>
-      <div class="t-role">VP, Domain Architecture — Sustainability Technology, Deutsche Bank</div>
+      <div class="t-author">
+        <img class="t-avatar" src="assets/testimonials/ANU.png" alt="Anu Kannan">
+        <div>
+          <div class="t-name">Anu Kannan</div>
+          <div class="t-role">VP, Domain Architecture — Sustainability Technology, Deutsche Bank</div>
+        </div>
+      </div>
     </div>
     <div class="t-card reveal">
       <div class="t-headline">"Often the only woman in the room. The program changed that."</div>
       <p class="t-body">I needed more than competence. I needed strategic confidence and clarity under pressure. It changed how I think at senior levels and how I handle challenges.</p>
-      <div class="t-name">Harvinder Kaur</div>
-      <div class="t-role">Founder & CEO, Monaargy Consultancy</div>
+      <div class="t-author">
+        <img class="t-avatar" src="assets/testimonials/harvinder.png" alt="Harvinder Kaur">
+        <div>
+          <div class="t-name">Harvinder Kaur</div>
+          <div class="t-role">Founder & CEO, Monaargy Consultancy</div>
+        </div>
+      </div>
     </div>
     <div class="t-card reveal">
       <div class="t-headline">"Zero to ₹30 crore. One state to fourteen. In two years."</div>
       <p class="t-body">I joined at a turning point — moving from a senior corporate role into entrepreneurship. The shift was not just strategic, it was personal. I became clearer, more decisive, and far more confident in handling pressure. What stayed with me most was the mindset shift. It changed how I lead, how I respond, and how I grow.</p>
-      <div class="t-name">Minal Bhagat</div>
-      <div class="t-role">Co-Founder & Director, Ensonic Computech Pvt. Ltd.</div>
+      <div class="t-author">
+        <img class="t-avatar" src="assets/testimonials/minal.png" alt="Minal Bhagat">
+        <div>
+          <div class="t-name">Minal Bhagat</div>
+          <div class="t-role">Co-Founder & Director, Ensonic Computech Pvt. Ltd.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1572,7 +2073,7 @@
 <section class="webinar">
   <h3>Know More</h3>
   <p class="webinar-sub">Some leaders prefer to first understand how enterprise authority is built and evaluated before committing.</p>
-  <p style="font-family:'Fira Sans',sans-serif;font-size:15px;font-weight:500;color:var(--bold-black);margin-bottom:24px;letter-spacing:0.05em;text-transform:uppercase;">We periodically host closed-door Executive Briefings where we explore:</p>
+  <p class="webinar-explore">We periodically host closed-door Executive Briefings where we explore:</p>
   <ul class="webinar-list">
     <li>Why senior careers plateau structurally and what breaks the ceiling</li>
     <li>How enterprise judgement is evaluated at the highest levels</li>
