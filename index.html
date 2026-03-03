@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Board Members</title>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scarlet: #F52929;
+    --beige-01: #F7F6E4;
+    --beige-02: #EBEADC;
+    --brand-bg: #F2F1DF;
+    --white: #FFFFFF;
+    --black: #000000;
+    --bold-black: #141111;
+    --course-title: #ea3323;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body { 
+    background: var(--brand-bg); 
+    color: var(--bold-black); 
+    font-family: 'Fira Sans', sans-serif; 
+    font-weight: 300; 
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3, .display {
+    font-family: 'Gemunu Libre', sans-serif; 
+    font-weight: 700;
+  }
+  
+  .display {
+    font-size: clamp(60px, 10vw, 140px);
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+  }
+
+  .logo { 
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 18px; 
+    font-weight: 800; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    color: var(--scarlet); 
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    display: inline-flex; 
+    align-items: center;
+    gap: 12px;
+    padding: 18px 40px;
+    background: var(--scarlet); 
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 16px; 
+    font-weight: 700;
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    text-decoration: none;
+    border: none; 
+    cursor: pointer; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--bold-black);
+    transition: left 0.4s ease;
+    z-index: 0;
+  }
+  
+  .btn-primary:hover::before {
+    left: 0;
+  }
+  
+  .btn-primary span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .btn-primary:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(245, 41, 41, 0.3);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    border: 2px solid var(--scarlet); 
+    color: var(--scarlet);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 16px; 
+    font-weight: 700;
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    text-decoration: none;
+    background: transparent; 
+    cursor: pointer; 
+    transition: all 0.4s ease;
+  }
+  
+  .btn-outline:hover { 
+    background: var(--scarlet); 
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  /* ── SHARED ── */
+  .eyebrow {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 12px; 
+    font-weight: 500;
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    color: var(--scarlet);
+    display: block; 
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.0; 
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  
+  .body-text { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 17px; 
+    line-height: 1.8; 
+    color: var(--bold-black); 
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ══════════════════════════
+     SECTION 1 — HERO
+  ══════════════════════════ */
+  .hero {
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    padding: 120px 40px 80px; 
+    position: relative; 
+    overflow: hidden;
+    background: var(--black);
+  }
+  
+  .hero-bg-text {
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(180px, 28vw, 450px);
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(245, 41, 41, 0.15);
+    line-height: 1; 
+    user-select: none; 
+    pointer-events: none; 
+    white-space: nowrap;
+    z-index: 0;
+  }
+  
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    flex: 1;
+  }
+
+  .hero-right {
+    flex-shrink: 0;
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.5s ease forwards;
+  }
+  .hero-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+  .hero-video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .hero-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .hero-eyebrow {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px; 
+    font-weight: 500;
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    color: var(--scarlet); 
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  .hero-brand {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(20px, 3vw, 28px); 
+    font-weight: 600;
+    letter-spacing: 0.2em; 
+    text-transform: uppercase; 
+    color: var(--white); 
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.2s ease forwards;
+  }
+  
+  .hero-tagline {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(56px, 9vw, 120px); 
+    font-weight: 800;
+    color: var(--white); 
+    line-height: 0.9; 
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.4s ease forwards;
+  }
+  
+  .hero-tagline span {
+    display: block;
+    color: var(--scarlet);
+  }
+  
+  .hero-sub {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px; 
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9); 
+    max-width: 520px; 
+    line-height: 1.7; 
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.6s ease forwards;
+  }
+  
+  .hero-cta {
+    opacity: 0;
+    animation: fadeInUp 0.8s 0.8s ease forwards;
+  }
+
+  /* ══════════════════════════
+     SECTION 2 — CLAIM YOUR AUTHORITY
+  ══════════════════════════ */
+  .authority {
+    background: var(--beige-02); 
+    padding: 140px 40px;
+    position: relative;
+  }
+  
+  .authority-grid {
+    display: grid; 
+    grid-template-columns: 1.2fr 1fr; 
+    gap: 100px; 
+    align-items: center; 
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .authority-left h2 { 
+    color: var(--bold-black);
+    font-size: clamp(48px, 6vw, 80px);
+  }
+  
+  .authority-left p { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px; 
+    line-height: 1.8; 
+    color: var(--bold-black); 
+    margin-top: 28px; 
+    max-width: 500px;
+    font-weight: 300;
+  }
+  
+  .authority-coda {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 20px; 
+    font-weight: 700;
+    color: var(--scarlet); 
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .shift-list { 
+    list-style: none;
+    background: var(--white);
+    padding: 48px;
+    border-left: 4px solid var(--scarlet);
+  }
+  
+  .shift-list li {
+    display: flex; 
+    align-items: center; 
+    gap: 24px;
+    padding: 24px 0; 
+    border-bottom: 1px solid var(--beige-02);
+    font-size: 17px;
+    transition: all 0.3s ease;
+  }
+  
+  .shift-list li:hover {
+    padding-left: 12px;
+  }
+  
+  .shift-list li:last-child { 
+    border-bottom: none; 
+    padding-bottom: 0;
+  }
+  
+  .shift-from {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+    color: var(--bold-black); 
+    min-width: 100px;
+    font-size: 15px;
+    opacity: 0.6;
+  }
+  
+  .shift-arrow { 
+    color: var(--scarlet); 
+    font-size: 20px; 
+    flex-shrink: 0;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+  }
+  
+  .shift-list li:hover .shift-arrow {
+    transform: translateX(8px);
+  }
+  
+  .shift-to { 
+    font-family: 'Gemunu Libre', sans-serif;
+    font-weight: 700; 
+    color: var(--bold-black);
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* Blinking word animation */
+  .blink-wrap {
+    display: inline-block; 
+    position: relative;
+    vertical-align: bottom; 
+    overflow: hidden;
+    height: 1.1em; 
+    min-width: 280px;
+  }
+  
+  .blink-word {
+    display: block; 
+    position: absolute; 
+    left: 0; 
+    top: 0;
+    color: var(--scarlet); 
+    white-space: nowrap;
+    opacity: 0; 
+    transform: translateY(20px);
+    animation: wordCycle 9s infinite;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-weight: 800;
+  }
+  
+  .blink-word:nth-child(1) { animation-delay: 0s; }
+  .blink-word:nth-child(2) { animation-delay: 3s; }
+  .blink-word:nth-child(3) { animation-delay: 6s; }
+  
+  @keyframes wordCycle {
+    0%   { opacity: 0; transform: translateY(20px); }
+    5%   { opacity: 1; transform: translateY(0); }
+    28%  { opacity: 1; transform: translateY(0); }
+    33%  { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 0; transform: translateY(20px); }
+  }
+
+  /* ══════════════════════════
+     SECTION 3 — BREAKTHROUGH
+  ══════════════════════════ */
+  .breakthrough { 
+    background: var(--white); 
+    padding: 140px 40px;
+  }
+  
+  .breakthrough-header { 
+    margin-bottom: 80px; 
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .breakthrough-header h2 { 
+    margin-bottom: 20px; 
+    color: var(--bold-black);
+  }
+  
+  .breakthrough-header .sub { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px; 
+    color: var(--bold-black);
+    font-weight: 300;
+  }
+
+  /* Cards */
+  .what-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px; 
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .what-card { 
+    background: var(--beige-01); 
+    padding: 48px 40px;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .what-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--scarlet);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .what-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    border-color: var(--scarlet);
+  }
+  
+  .what-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .what-card::after {
+    content: counter(card);
+    counter-increment: card;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--scarlet);
+    opacity: 0.1;
+    line-height: 1;
+    transition: all 0.3s ease;
+  }
+  
+  .what-card:hover::after {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+  
+  .what-grid {
+    counter-reset: card;
+  }
+  
+  .what-label {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 26px; 
+    font-weight: 700;
+    color: var(--bold-black); 
+    margin-bottom: 16px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  
+  .what-body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.7; 
+    margin-bottom: 24px;
+  }
+  
+  .what-not {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    font-style: italic;
+    padding-top: 20px; 
+    border-top: 1px solid rgba(0,0,0,0.1);
+    opacity: 0.7;
+  }
+
+  /* ══════════════════════════
+     SECTION 4 — IS THIS YOU
+  ══════════════════════════ */
+  .for-who { 
+    background: var(--brand-bg);
+    padding: 140px 40px; 
+  }
+  
+  .for-who-inner { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 100px; 
+    align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .for-who h2 { 
+    color: var(--bold-black);
+    font-size: clamp(48px, 6vw, 80px);
+  }
+  
+  .for-who .intro { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 22px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.7; 
+    margin-top: 28px;
+    font-style: italic;
+  }
+  
+  .checklist { 
+    list-style: none; 
+    margin-top: 40px;
+    background: var(--white);
+    padding: 48px;
+    border: 2px solid var(--beige-02);
+  }
+  
+  .checklist li {
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-start;
+    padding: 24px 0; 
+    font-size: 17px; 
+    font-weight: 300;
+    color: var(--bold-black);
+    line-height: 1.7; 
+    border-bottom: 1px solid var(--beige-02);
+    transition: all 0.3s ease;
+  }
+  
+  .checklist li:hover {
+    padding-left: 12px;
+  }
+  
+  .checklist li:last-child { 
+    border-bottom: none; 
+    padding-bottom: 0;
+  }
+  
+  .check { 
+    color: var(--scarlet); 
+    flex-shrink: 0; 
+    margin-top: 2px; 
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--scarlet);
+    border-radius: 50%;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-weight: 700;
+  }
+  
+  .guardrail-sm {
+    display: inline-flex; 
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px; 
+    padding: 16px 24px;
+    background: var(--scarlet); 
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 14px; 
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════
+     SECTION 5 — INSIDE THE PROGRAM
+  ══════════════════════════ */
+  .program { 
+    background: var(--beige-01); 
+    padding: 140px 40px;
+    position: relative;
+  }
+  
+  .program-header { 
+    margin-bottom: 80px; 
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .program-header h2 { 
+    margin-bottom: 20px; 
+    color: var(--bold-black);
+  }
+  
+  .program-header p { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.8;
+  }
+  
+  .program-grid {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px; 
+    max-width: 1200px;
+    margin: 0 auto 32px;
+  }
+  
+  .program-grid-3 {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .prog-card { 
+    background: var(--white); 
+    padding: 48px; 
+    display: flex; 
+    gap: 28px; 
+    align-items: flex-start;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+  }
+  
+  .prog-card:hover {
+    border-color: var(--scarlet);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+  
+  .prog-icon {
+    width: 60px; 
+    height: 60px; 
+    flex-shrink: 0;
+    background: var(--beige-02); 
+    border: 2px solid var(--scarlet);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 28px; 
+    color: var(--scarlet);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  
+  .prog-card:hover .prog-icon {
+    background: var(--scarlet);
+    color: var(--white);
+  }
+  
+  .meth-title {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 24px; 
+    font-weight: 700;
+    color: var(--bold-black); 
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  
+  .meth-body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════
+     SECTION 6 — TESTIMONIALS
+  ══════════════════════════ */
+  .testimonials { 
+    background: var(--white); 
+    padding: 140px 40px;
+  }
+  
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  .testimonials h2 { 
+    display: inline-block;
+    color: var(--bold-black);
+  }
+  
+  .t-grid {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px; 
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .t-card { 
+    background: var(--beige-01); 
+    padding: 56px 48px;
+    position: relative;
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+  }
+  
+  .t-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--scarlet);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  }
+  
+  .t-card::before {
+    content: '"';
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 140px;
+    color: var(--scarlet);
+    opacity: 0.08;
+    line-height: 1;
+    font-weight: 800;
+  }
+  
+  .t-headline {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 28px; 
+    font-weight: 700;
+    color: var(--scarlet); 
+    line-height: 1.3; 
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+  
+  .t-body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 17px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.9; 
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .t-name {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 20px; 
+    font-weight: 700;
+    color: var(--bold-black);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  
+  .t-role {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  /* ══════════════════════════
+     SECTION 7 — ENTRY
+  ══════════════════════════ */
+  .entry { 
+    background: var(--beige-02); 
+    padding: 140px 40px;
+  }
+  
+  .entry-top { 
+    margin-bottom: 80px; 
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .entry-top h2 { 
+    color: var(--bold-black);
+  }
+  
+  .entry-note {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 20px; 
+    font-weight: 300;
+    font-style: italic; 
+    color: var(--bold-black); 
+    margin-top: 20px;
+  }
+  
+  .steps {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0; 
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: var(--scarlet);
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  .step { 
+    padding: 60px 40px; 
+    background: var(--white);
+    border-right: 2px solid var(--beige-02);
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+  
+  .step:last-child { 
+    border-right: none; 
+  }
+  
+  .step:hover { 
+    background: var(--beige-01);
+  }
+  
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--scarlet);
+    border-radius: 50%;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 18px; 
+    font-weight: 800;
+    color: var(--white); 
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 20px rgba(245, 41, 41, 0.3);
+  }
+  
+  .step-title {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 32px; 
+    font-weight: 700;
+    color: var(--bold-black); 
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  
+  .step-body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════
+     SECTION 8 — FINAL CTA
+  ══════════════════════════ */
+  .final-cta {
+    background: var(--bold-black); 
+    padding: 160px 40px; 
+    text-align: center;
+    position: relative; 
+    overflow: hidden;
+  }
+  
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(245, 41, 41, 0.03) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .final-cta .cta-eyebrow {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px; 
+    font-weight: 500;
+    letter-spacing: 0.3em; 
+    text-transform: uppercase; 
+    color: var(--scarlet);
+    display: block; 
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .final-cta h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(48px, 7vw, 88px); 
+    color: var(--white);
+    max-width: 900px; 
+    margin: 0 auto 28px; 
+    line-height: 1.0;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+  
+  .final-cta .cta-sub {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 22px; 
+    font-weight: 300;
+    color: rgba(255,255,255,0.7); 
+    max-width: 560px; 
+    margin: 0 auto 56px; 
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .final-cta .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 60px;
+    background: var(--scarlet); 
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 18px; 
+    font-weight: 700;
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    text-decoration: none;
+    border: none; 
+    cursor: pointer; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .final-cta .btn-cta:hover { 
+    background: var(--white); 
+    color: var(--scarlet);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px rgba(245, 41, 41, 0.4);
+  }
+
+  /* ══════════════════════════
+     WEBINAR
+  ══════════════════════════ */
+  .webinar { 
+    background: var(--beige-01); 
+    padding: 100px 40px; 
+    text-align: center;
+    border-top: 2px solid var(--beige-02);
+  }
+  
+  .webinar h3 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 48px; 
+    font-weight: 700;
+    color: var(--bold-black); 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  .webinar-sub {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    max-width: 600px; 
+    margin: 0 auto 40px; 
+    line-height: 1.8;
+  }
+  
+  .webinar-list {
+    list-style: none; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 16px 40px;
+    max-width: 900px; 
+    margin: 0 auto 48px;
+  }
+  
+  .webinar-list li {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px; 
+    font-weight: 300;
+    color: var(--bold-black); 
+    position: relative; 
+    padding-left: 24px;
+    text-align: left;
+  }
+  
+  .webinar-list li::before {
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    top: 10px;
+    width: 8px; 
+    height: 8px; 
+    background: var(--scarlet); 
+    border-radius: 50%;
+  }
+  
+  .webinar-note {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px; 
+    font-weight: 300;
+    font-style: italic; 
+    color: var(--bold-black); 
+    margin-top: 32px;
+    opacity: 0.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black); 
+    padding: 40px 40px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+  
+  footer .logo { 
+    color: var(--white);
+    font-size: 16px; 
+  }
+  
+  footer p { 
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px; 
+    font-weight: 300;
+    color: rgba(255,255,255,0.5); 
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp { 
+    from { opacity: 0; transform: translateY(30px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-inner {
+      flex-direction: column;
+    }
+    .hero-right {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .authority-grid { 
+      grid-template-columns: 1fr; 
+      gap: 60px; 
+    }
+    .for-who-inner { 
+      grid-template-columns: 1fr; 
+      gap: 60px; 
+    }
+    .what-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+    }
+    .program-grid { 
+      grid-template-columns: 1fr; 
+    }
+    .program-grid-3 { 
+      grid-template-columns: repeat(2, 1fr); 
+    }
+    .t-grid { 
+      grid-template-columns: 1fr; 
+    }
+    .steps { 
+      grid-template-columns: repeat(2, 1fr); 
+    }
+    .steps::before { 
+      display: none; 
+    }
+    .step { 
+      border-right: none; 
+      border-bottom: 2px solid var(--beige-02); 
+    }
+    .step:nth-child(2) { 
+      border-right: none; 
+    }
+    .step:nth-child(3),
+    .step:nth-child(4) { 
+      border-bottom: none; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
+      padding: 80px 24px; 
+    }
+    .hero { 
+      padding: 100px 24px 60px; 
+      min-height: auto;
+    }
+    .hero-inner {
+      flex-direction: column;
+      gap: 40px;
+    }
+    .hero-right {
+      max-width: 100%;
+      min-width: 0;
+      order: 1;
+    }
+    .hero-content {
+      order: 0;
+    }
+    .hero-tagline {
+      font-size: clamp(40px, 12vw, 80px);
+    }
+    .what-grid, .program-grid-3 { 
+      grid-template-columns: 1fr; 
+    }
+    .steps { 
+      grid-template-columns: 1fr; 
+    }
+    .step { 
+      border-right: none; 
+      border-bottom: 2px solid var(--beige-02); 
+      padding: 40px 32px;
+    }
+    .step:last-child { 
+      border-bottom: none; 
+    }
+    .hero-bg-text { 
+      display: none; 
+    }
+    .shift-list,
+    .checklist {
+      padding: 32px;
+    }
+    .blink-wrap {
+      min-width: 200px;
+      height: 1.2em;
+    }
+    .blink-word {
+      font-size: clamp(36px, 10vw, 60px);
+    }
+    .what-card::after {
+      font-size: 80px;
+      top: 16px;
+      right: 16px;
+    }
+    .t-card::before {
+      font-size: 100px;
+      top: 20px;
+      right: 24px;
+    }
+    footer { 
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .webinar-list {
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100%;
+      padding: 0 20px;
+    }
+    .final-cta h2 {
+      font-size: clamp(36px, 10vw, 60px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .btn-primary,
+    .btn-outline {
+      width: 100%;
+      justify-content: center;
+      padding: 16px 24px;
+      font-size: 14px;
+    }
+    .what-card {
+      padding: 32px 24px;
+    }
+    .what-label {
+      font-size: 22px;
+    }
+    .prog-card {
+      flex-direction: column;
+      padding: 32px;
+    }
+    .prog-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+    }
+    .t-card {
+      padding: 40px 28px;
+    }
+    .t-headline {
+      font-size: 22px;
+    }
+    .step-title {
+      font-size: 26px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     SECTION 1 — HERO
+══════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg-text">100</div>
+  <div class="hero-inner">
+  <div class="hero-content">
+    <div class="hero-eyebrow">For women who lead</div>
+    <div class="hero-brand">100 Board Members</div>
+    <div class="hero-tagline">
+      Stop climbing.
+      <span>Start commanding.</span>
+    </div>
+    <p class="hero-sub">A cohort that fast-tracks your growth. Turn a 10-year climb into a 2-year leap.</p>
+    <div class="hero-cta">
+      <a href="#apply" class="btn-primary"><span>Request Your Seat</span> →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo">
+      <img src="120815570.png" alt="100 Board Members">
+    </div>
+    <div class="hero-video-wrap">
+      <iframe src="https://www.youtube.com/embed/HPAP0eBHauk?autoplay=1&mute=1" title="100 Board Members" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 2 — CLAIM YOUR AUTHORITY
+══════════════════════════ -->
+<section class="authority">
+  <div class="authority-grid">
+    <div class="authority-left reveal">
+      <span class="eyebrow">The turning point</span>
+      <h2>Claim your <span class="blink-wrap"><span class="blink-word">authority.</span><span class="blink-word">pay.</span><span class="blink-word">seat.</span></span></h2>
+      <p>Be the woman who refuses to be overlooked, play at the level you belong.</p>
+      <p class="authority-coda">You have done the work. Now own the room.</p>
+    </div>
+    <ul class="shift-list reveal">
+      <li><span class="shift-from">Ignored</span><span class="shift-arrow">→</span><span class="shift-to">Leading</span></li>
+      <li><span class="shift-from">Invisible</span><span class="shift-arrow">→</span><span class="shift-to">Impossible to overlook</span></li>
+      <li><span class="shift-from">Stuck</span><span class="shift-arrow">→</span><span class="shift-to">Unstoppable</span></li>
+      <li><span class="shift-from">Unheard</span><span class="shift-arrow">→</span><span class="shift-to">Undeniable</span></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 3 — YOUR BREAKTHROUGH
+══════════════════════════ -->
+<section class="breakthrough">
+  <div class="breakthrough-header reveal">
+    <span class="eyebrow">What you're stepping into</span>
+    <h2>Your breakthrough starts here.</h2>
+    <p class="sub body-text">Know exactly what you're walking into. And what you're leaving behind.</p>
+  </div>
+  <div class="what-grid">
+    <div class="what-card reveal">
+      <div class="what-label">Authority by design</div>
+      <div class="what-body">A deliberate structure for authority and influence.</div>
+      <div class="what-not">Not casual networking disguised as progress</div>
+    </div>
+    <div class="what-card reveal">
+      <div class="what-label">Top-level positioning</div>
+      <div class="what-body">Engineered for top-level visibility and positioning.</div>
+      <div class="what-not">Not visibility without strategy or substance</div>
+    </div>
+    <div class="what-card reveal">
+      <div class="what-label">3–4x acceleration</div>
+      <div class="what-body">Structured to help you multiply your career trajectory in a shorter span.</div>
+      <div class="what-not">Not growth left to hope and timing</div>
+    </div>
+    <div class="what-card reveal">
+      <div class="what-label">Compensation that matches capability</div>
+      <div class="what-body">A shift from underpaid to compensation that reflects your true value.</div>
+      <div class="what-not">Not staying undervalued while overdelivering</div>
+    </div>
+    <div class="what-card reveal">
+      <div class="what-label">10 years of proof → 2 years of power</div>
+      <div class="what-body">Turning a decade of experience into two years of positioned momentum.</div>
+      <div class="what-not">Not waiting years to be noticed organically</div>
+    </div>
+    <div class="what-card reveal">
+      <div class="what-label">Inside the rooms that matter</div>
+      <div class="what-body">Strategic access to decision-level rooms and relationships.</div>
+      <div class="what-not">Not sitting outside while others decide</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 4 — IS THIS YOU
+══════════════════════════ -->
+<section class="for-who">
+  <div class="for-who-inner">
+    <div class="reveal">
+      <span class="eyebrow">Eligibility</span>
+      <h2>Is this you?</h2>
+      <p class="intro">You're doing more than your title reflects, and it's time that shifted.</p>
+    </div>
+    <div class="reveal">
+      <div class="guardrail-sm">Minimum 8 years professional experience required</div>
+      <ul class="checklist">
+        <li><span class="check">✦</span>You're targeting next-level leadership in the next 2–3 years, not just someday.</li>
+        <li><span class="check">✦</span>You want a meaningful compensation leap, not small increments.</li>
+        <li><span class="check">✦</span>You're navigating politics, perception gaps, or being underestimated.</li>
+        <li><span class="check">✦</span>You're ready to move from executor to decision-maker.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 5 — INSIDE THE PROGRAM
+══════════════════════════ -->
+<section class="program">
+  <div class="program-header reveal">
+    <span class="eyebrow">Inside the program</span>
+    <h2>How Women Claim Power Collectively.</h2>
+    <p>Everything within 100 Board Members is built to translate your experience into visible and legible authority.</p>
+  </div>
+  <div class="program-grid">
+    <div class="prog-card reveal">
+      <div class="prog-icon">◉</div>
+      <div>
+        <div class="meth-title">Cohort-Based Learning</div>
+        <div class="meth-body">Experiential sessions with a curated cohort of senior women. You learn alongside peers who match your ambition, not below it.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">◎</div>
+      <div>
+        <div class="meth-title">Career Politics, Decoded</div>
+        <div class="meth-body">Politics, bias, and the moments no one prepares you for — brought into the room and worked through in real time, through structured activities.</div>
+      </div>
+    </div>
+  </div>
+  <div class="program-grid-3">
+    <div class="prog-card reveal">
+      <div class="prog-icon">◈</div>
+      <div>
+        <div class="meth-title">Access to Top Leaders</div>
+        <div class="meth-body">Sessions with senior members and investors who have held the rooms you're targeting.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">◇</div>
+      <div>
+        <div class="meth-title">Confidential Intensive Sessions</div>
+        <div class="meth-body">Closed-room, online sessions to work through your personal, high-stakes challenges in a private space.</div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-icon">⬡</div>
+      <div>
+        <div class="meth-title">Practice and Mastery Huddles</div>
+        <div class="meth-body">Ongoing activity sessions to sharpen the capabilities and tactics covered across the program.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 6 — TESTIMONIALS
+══════════════════════════ -->
+<section class="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="eyebrow">Real results. Real women.</span>
+    <h2>In their words.</h2>
+  </div>
+  <div class="t-grid">
+    <div class="t-card reveal">
+      <div class="t-headline">"I grew more in 3 years than I had in the previous 10."</div>
+      <p class="t-body">I started stepping into conversations I used to hesitate to enter. I realized I had been operating below my potential — not because I lacked capability, but because I had never been trained to think at that level.</p>
+      <div class="t-name">Sushma Patil</div>
+      <div class="t-role">Principal Consultant, Infosys</div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-headline">"I took on 2x the responsibility and felt steady."</div>
+      <p class="t-body">I took on 2x the responsibility and felt steady and confident through the transition. Building my profile changed how I positioned myself — it gave me greater clarity, stronger conviction, and a sharper sense of direction. It directly influenced the kind of roles I was considered for and the conversations I was invited into.</p>
+      <div class="t-name">Anu Kannan</div>
+      <div class="t-role">VP, Domain Architecture — Sustainability Technology, Deutsche Bank</div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-headline">"Often the only woman in the room. The program changed that."</div>
+      <p class="t-body">I needed more than competence. I needed strategic confidence and clarity under pressure. It changed how I think at senior levels and how I handle challenges.</p>
+      <div class="t-name">Harvinder Kaur</div>
+      <div class="t-role">Founder & CEO, Monaargy Consultancy</div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-headline">"Zero to ₹30 crore. One state to fourteen. In two years."</div>
+      <p class="t-body">I joined at a turning point — moving from a senior corporate role into entrepreneurship. The shift was not just strategic, it was personal. I became clearer, more decisive, and far more confident in handling pressure. What stayed with me most was the mindset shift. It changed how I lead, how I respond, and how I grow.</p>
+      <div class="t-name">Minal Bhagat</div>
+      <div class="t-role">Co-Founder & Director, Ensonic Computech Pvt. Ltd.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 7 — ENTRY
+══════════════════════════ -->
+<section class="entry">
+  <div class="entry-top reveal">
+    <span class="eyebrow">Entry</span>
+    <h2>Entry into 100 Board Members is intentional.</h2>
+    <p class="entry-note">Not everyone who applies is selected.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-title">Application</div>
+      <div class="step-body">Complete the detailed selection form outlining your experience, scope of impact, and next-level intent.</div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-title">Review</div>
+      <div class="step-body">Selection is based on substance, demonstrated experience, and readiness.</div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-title">Diagnostic</div>
+      <div class="step-body">Shortlisted applicants are invited for a focused diagnostic discussion. Not an interview — a calibration.</div>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-title">Confirmation</div>
+      <div class="step-body">Applications are reviewed based on readiness and experience. Selected candidates receive formal confirmation and enrolment details.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     SECTION 8 — FINAL CTA
+══════════════════════════ -->
+<section class="final-cta" id="apply">
+  <span class="cta-eyebrow">The moment is now</span>
+  <h2>Do you believe you are ready for the seat?</h2>
+  <p class="cta-sub">Then don't wait for someone to hand you the next level.</p>
+  <a href="#" class="btn-cta">Request Your Seat →</a>
+</section>
+
+
+<!-- ══════════════════════════
+     WEBINAR
+══════════════════════════ -->
+<section class="webinar">
+  <h3>Know More</h3>
+  <p class="webinar-sub">Some leaders prefer to first understand how enterprise authority is built and evaluated before committing.</p>
+  <p style="font-family:'Fira Sans',sans-serif;font-size:15px;font-weight:500;color:var(--bold-black);margin-bottom:24px;letter-spacing:0.05em;text-transform:uppercase;">We periodically host closed-door Executive Briefings where we explore:</p>
+  <ul class="webinar-list">
+    <li>Why senior careers plateau structurally and what breaks the ceiling</li>
+    <li>How enterprise judgement is evaluated at the highest levels</li>
+    <li>What separates execution from authority and why most never make the shift</li>
+    <li>What 100 Board Members demands from its participants</li>
+  </ul>
+  <a href="#" class="btn-outline">Register for Executive Briefing</a>
+  <p class="webinar-note">These are not sales sessions. They are diagnostic conversations. Attendance does not guarantee eligibility.</p>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="logo">100 Board Members</div>
+  <p>© 2025 100 Board Members. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal animation
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
