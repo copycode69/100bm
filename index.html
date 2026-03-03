@@ -869,6 +869,239 @@
   }
 
   /* ══════════════════════════
+     SECTION 4.5 — BEGIN YOUR JOURNEY
+  ══════════════════════════ */
+  .journey {
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .journey::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 50%;
+    height: 80%;
+    background: linear-gradient(225deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .journey-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .journey-header {
+    margin-bottom: 48px;
+  }
+  
+  .journey .eyebrow {
+    color: var(--scarlet);
+  }
+  
+  .journey h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  
+  .journey-desc {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    max-width: 600px;
+  }
+  
+  .journey-desc a {
+    color: var(--scarlet);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--scarlet);
+    transition: all 0.3s ease;
+  }
+  
+  .journey-desc a:hover {
+    opacity: 0.9;
+  }
+  
+  .journey-carousel-wrap {
+    position: relative;
+    margin: 48px 0 40px;
+    overflow: hidden;
+  }
+  
+  .journey-carousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .journey-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .journey-card {
+    flex: 0 0 320px;
+    height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+  }
+  
+  .journey-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  .journey-card.active {
+    border-color: var(--scarlet);
+    box-shadow: 0 0 20px rgba(245, 41, 41, 0.3);
+    transform: scale(1.02);
+  }
+  
+  .journey-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .journey-card:hover .journey-card-bg,
+  .journey-card.active .journey-card-bg {
+    transform: scale(1.1);
+  }
+  
+  .journey-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    transition: background 0.5s ease;
+  }
+  
+  .journey-card.active .journey-card-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+  }
+  
+  .journey-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 28px;
+    z-index: 2;
+  }
+  
+  .journey-card-prefix {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+  }
+  
+  .journey-card-title {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  
+  .journey-card-title strong {
+    font-weight: 800;
+  }
+  
+  .journey-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  
+  .journey-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+  }
+  
+  .journey-arrow:hover {
+    background: var(--scarlet);
+    border-color: var(--scarlet);
+    transform: scale(1.05);
+  }
+  
+  .journey-arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .journey-arrow:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: none;
+  }
+  
+  .journey-select-btn {
+    padding: 18px 48px;
+    background: var(--scarlet);
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  
+  .journey-select-btn:hover {
+    background: var(--white);
+    color: var(--scarlet);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(245, 41, 41, 0.4);
+  }
+
+  /* ══════════════════════════
      SECTION 5 — INSIDE THE PROGRAM
   ══════════════════════════ */
   .program { 
@@ -1644,7 +1877,7 @@
   }
   
   @media (max-width: 768px) {
-    .hero, .authority, .breakthrough, .for-who, .program, .case-studies, .testimonials, .entry, .final-cta, .webinar { 
+    .hero, .authority, .breakthrough, .for-who, .journey, .program, .case-studies, .testimonials, .entry, .final-cta, .webinar { 
       padding: 80px 24px; 
     }
     .hero { 
@@ -1665,6 +1898,9 @@
     }
     .hero-tagline {
       font-size: clamp(40px, 12vw, 80px);
+    }
+    .journey-card {
+      flex: 0 0 280px;
     }
     .what-grid, .program-grid-3 { 
       grid-template-columns: 1fr; 
@@ -1882,6 +2118,77 @@
         <li><span class="check">✦</span>You're navigating politics, perception gaps, or being underestimated.</li>
         <li><span class="check">✦</span>You're ready to move from executor to decision-maker.</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     BEGIN YOUR JOURNEY
+══════════════════════════ -->
+<section class="journey">
+  <div class="journey-inner">
+    <div class="journey-header reveal">
+      <span class="eyebrow">Begin your journey</span>
+      <h2>A better you</h2>
+      <p class="journey-desc">Claim your authority, elevate your career, establish board visibility, and more. <a href="#apply">Tell us your goals</a>, and become the leader you're meant to be.</p>
+    </div>
+    <div class="journey-carousel-wrap">
+      <div class="journey-carousel" id="journeyCarousel">
+        <div class="journey-card active" data-path="career">
+          <img class="journey-card-bg" src="assets/testimonials/susma.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm seeking</div>
+            <div class="journey-card-title"><strong>CAREER GROWTH</strong></div>
+          </div>
+        </div>
+        <div class="journey-card" data-path="authority">
+          <img class="journey-card-bg" src="assets/testimonials/ANU.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm looking to</div>
+            <div class="journey-card-title"><strong>CLAIM MY AUTHORITY</strong></div>
+          </div>
+        </div>
+        <div class="journey-card" data-path="board">
+          <img class="journey-card-bg" src="assets/testimonials/harvinder.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm seeking</div>
+            <div class="journey-card-title"><strong>BOARD VISIBILITY</strong></div>
+          </div>
+        </div>
+        <div class="journey-card" data-path="compensation">
+          <img class="journey-card-bg" src="assets/testimonials/minal.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm ready for</div>
+            <div class="journey-card-title"><strong>COMPENSATION LEAP</strong></div>
+          </div>
+        </div>
+        <div class="journey-card" data-path="leadership">
+          <img class="journey-card-bg" src="assets/testimonials/susma.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm moving to</div>
+            <div class="journey-card-title"><strong>NEXT-LEVEL LEADERSHIP</strong></div>
+          </div>
+        </div>
+        <div class="journey-card" data-path="decision">
+          <img class="journey-card-bg" src="assets/testimonials/ANU.png" alt="">
+          <div class="journey-card-overlay"></div>
+          <div class="journey-card-content">
+            <div class="journey-card-prefix">I'm ready to go from</div>
+            <div class="journey-card-title"><strong>EXECUTOR TO DECISION-MAKER</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="journey-nav">
+      <button class="journey-arrow" id="journeyPrev" aria-label="Previous">←</button>
+      <a href="#apply" class="journey-select-btn">Select path →</a>
+      <button class="journey-arrow" id="journeyNext" aria-label="Next">→</button>
     </div>
   </div>
 </section>
@@ -2122,6 +2429,36 @@
       }
     });
   });
+
+  // Journey carousel
+  const carousel = document.getElementById('journeyCarousel');
+  const prevBtn = document.getElementById('journeyPrev');
+  const nextBtn = document.getElementById('journeyNext');
+  const cards = document.querySelectorAll('.journey-card');
+
+  if (carousel && prevBtn && nextBtn) {
+    const getScrollAmount = () => cards[0] ? cards[0].offsetWidth + 24 : 344;
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    carousel.addEventListener('scroll', () => {
+      prevBtn.disabled = carousel.scrollLeft <= 0;
+      nextBtn.disabled = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10;
+    });
+    prevBtn.disabled = true;
+  }
 </script>
 
 </body>
