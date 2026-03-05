@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>100 Board Members</title>
 <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;600;700;800&family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -19,6 +19,11 @@
 
   * { margin:0; padding:0; box-sizing:border-box; }
   
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
   html {
     scroll-behavior: smooth;
   }
@@ -30,6 +35,7 @@
     font-weight: 300; 
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
   }
   
   /* Global smooth transitions */
@@ -191,6 +197,7 @@
   .hero-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     align-items: center;
     gap: 64px;
     width: 100%;
@@ -225,6 +232,8 @@
     border-radius: 8px;
   }
   .hero-video-wrap {
+    grid-column: 1 / -1;
+    margin-top: 24px;
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
@@ -325,32 +334,11 @@
     color: var(--white);
   }
   
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.05em;
-    margin-top: 32px;
-    opacity: 0;
-    animation: fadeInUp 0.8s 1s ease forwards;
-  }
-  
-  .hero-badge strong {
-    color: var(--scarlet);
-  }
-  
   .hero-right-cta {
     position: absolute;
     bottom: 16px;
     right: 16px;
+    touch-action: manipulation;
     padding: 10px 20px;
     background: var(--scarlet);
     color: var(--white);
@@ -962,6 +950,10 @@
     overflow: hidden;
   }
   
+  .testimonials .t-slideshow-wrap {
+    overflow: hidden;
+  }
+  
   .testimonials::before {
     content: '';
     position: absolute;
@@ -989,20 +981,95 @@
     color: var(--white);
   }
   
-  .t-grid {
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px; 
-    max-width: 1400px;
-    margin: 0 auto;
+  .t-slideshow-wrap {
     position: relative;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 56px;
     z-index: 1;
+  }
+  
+  .t-slideshow {
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  
+  .t-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .t-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+  
+  .t-slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    touch-action: manipulation;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .t-slide-btn:hover {
+    background: var(--scarlet);
+    border-color: var(--scarlet);
+    transform: translateY(-50%) scale(1.05);
+  }
+  
+  .t-prev { left: 0; }
+  .t-next { right: 0; }
+  
+  .t-slide-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  .t-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  
+  .t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .t-dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  
+  .t-dot.active {
+    background: var(--scarlet);
+    transform: scale(1.2);
   }
   
   .t-card { 
     background: rgba(255, 255, 255, 0.06);
     padding: 48px 40px;
     position: relative;
+    width: 100%;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -1080,6 +1147,7 @@
   
   .t-role {
     font-family: 'Fira Sans', sans-serif;
+    word-break: break-word;
     font-size: 15px; 
     font-weight: 300;
     color: rgba(255, 255, 255, 0.7); 
@@ -1407,10 +1475,213 @@
     border-color: var(--white);
   }
 
+  /* ── APPLICATION MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-box {
+    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 50%, #150a0a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    max-width: 640px;
+    width: 100%;
+    margin: auto 0 40px;
+    padding: 48px 40px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  .modal-overlay.open .modal-box {
+    transform: translateY(0);
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .modal-close:hover {
+    background: var(--scarlet);
+    border-color: var(--scarlet);
+  }
+  .modal-title {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .modal-subtitle {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--scarlet);
+    margin-bottom: 24px;
+  }
+  .modal-intro {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .modal-intro p {
+    margin-bottom: 12px;
+  }
+  .modal-intro p:last-child {
+    margin-bottom: 0;
+  }
+  .modal-section {
+    margin-bottom: 32px;
+  }
+  .modal-section h3 {
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--scarlet);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .modal-field {
+    margin-bottom: 20px;
+  }
+  .modal-field label {
+    display: block;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 8px;
+  }
+  .modal-field input,
+  .modal-field select,
+  .modal-field textarea {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+  }
+  .modal-field input::placeholder,
+  .modal-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .modal-field input:focus,
+  .modal-field select:focus,
+  .modal-field textarea:focus {
+    outline: none;
+    border-color: var(--scarlet);
+  }
+  .modal-field select {
+    cursor: pointer;
+  }
+  .modal-field select option {
+    background: #1a0d0d;
+    color: var(--white);
+  }
+  .modal-field textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .modal-field .hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 6px;
+  }
+  .modal-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .modal-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 400;
+  }
+  .modal-radio-group input[type="radio"],
+  .modal-radio-group input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--scarlet);
+  }
+  .modal-submit {
+    width: 100%;
+    padding: 18px;
+    background: var(--scarlet);
+    color: var(--white);
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+  }
+  .modal-submit:hover {
+    background: var(--white);
+    color: var(--scarlet);
+  }
+  @media (max-width: 768px) {
+    .modal-box {
+      padding: 40px 24px;
+    }
+  }
+  @media (max-width: 480px) {
+    .modal-overlay {
+      padding: 16px;
+    }
+    .modal-box {
+      padding: 32px 20px;
+    }
+    .modal-title {
+      font-size: 24px;
+    }
+    .modal-subtitle {
+      font-size: 16px;
+    }
+  }
+
   /* ── FOOTER ── */
   footer {
     background: var(--black); 
     padding: 40px 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
     display: flex; 
     justify-content: space-between; 
     align-items: center;
@@ -1466,11 +1737,6 @@
   .prog-card.reveal:nth-child(4) { transition-delay: 0.3s; }
   .prog-card.reveal:nth-child(5) { transition-delay: 0.4s; }
   
-  .t-card.reveal:nth-child(1) { transition-delay: 0s; }
-  .t-card.reveal:nth-child(2) { transition-delay: 0.1s; }
-  .t-card.reveal:nth-child(3) { transition-delay: 0.2s; }
-  .t-card.reveal:nth-child(4) { transition-delay: 0.3s; }
-  
   .step.reveal:nth-child(1) { transition-delay: 0s; }
   .step.reveal:nth-child(2) { transition-delay: 0.1s; }
   .step.reveal:nth-child(3) { transition-delay: 0.2s; }
@@ -1522,9 +1788,11 @@
     .program-grid-3 { 
       grid-template-columns: repeat(2, 1fr); 
     }
-    .t-grid { 
-      grid-template-columns: 1fr; 
+    .t-slideshow-wrap {
+      padding: 0 44px;
     }
+    .t-prev { left: 4px; }
+    .t-next { right: 4px; }
     .steps { 
       padding-left: 36px;
     }
@@ -1535,11 +1803,11 @@
   
   @media (max-width: 768px) {
     .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
-      padding: 80px 24px; 
+      padding: 60px 20px; 
     }
     .hero { 
-      padding: 48px 24px 56px; 
-      min-height: 100vh;
+      padding: 40px 20px 48px; 
+      min-height: auto;
     }
     .hero-inner {
       flex-direction: column;
@@ -1575,7 +1843,14 @@
     }
     .shift-list,
     .checklist {
-      padding: 32px;
+      padding: 24px 20px;
+    }
+    .t-slideshow-wrap {
+      padding: 0 44px;
+    }
+    .t-slide-btn {
+      min-width: 44px;
+      min-height: 44px;
     }
     .blink-wrap {
       min-width: 280px;
@@ -1612,36 +1887,160 @@
   }
 
   @media (max-width: 480px) {
+    .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
+      padding: 48px 16px; 
+    }
+    .hero { 
+      padding: 32px 16px 40px; 
+    }
+    .hero-content {
+      padding-right: 0;
+    }
+    .hero-tagline {
+      font-size: clamp(32px, 10vw, 48px);
+    }
+    .hero-sub {
+      font-size: 15px;
+    }
     .btn-primary,
     .btn-outline {
       width: 100%;
       justify-content: center;
       padding: 16px 24px;
       font-size: 14px;
+      min-height: 48px;
+    }
+    .hero-cta-group {
+      width: 100%;
+    }
+    .hero-cta-group .btn-primary {
+      width: 100%;
+    }
+    .hero-right-cta {
+      padding: 12px 16px;
+      font-size: 11px;
+    }
+    .hero-inner {
+      gap: 32px;
+    }
+    .authority-left h2 {
+      font-size: clamp(28px, 8vw, 40px);
+    }
+    .breakthrough-header h2 {
+      font-size: clamp(24px, 7vw, 32px);
+    }
+    .program-header h2 {
+      font-size: clamp(24px, 7vw, 32px);
+    }
+    .blink-wrap {
+      min-width: 200px;
     }
     .what-card {
-      padding: 32px 24px;
+      padding: 28px 20px;
     }
     .what-label {
-      font-size: 22px;
+      font-size: 20px;
     }
     .prog-card {
       flex-direction: column;
-      padding: 32px;
+      padding: 28px 20px;
     }
     .prog-icon {
       width: 48px;
       height: 48px;
       font-size: 20px;
     }
+    .t-slideshow-wrap {
+      padding: 0 36px;
+    }
+    .t-slide-btn {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      font-size: 18px;
+    }
     .t-card {
-      padding: 40px 28px;
+      padding: 32px 20px;
     }
     .t-headline {
-      font-size: 22px;
+      font-size: 18px;
+    }
+    .t-body {
+      font-size: 15px;
+    }
+    .t-name {
+      font-size: 16px;
+    }
+    .t-role {
+      font-size: 13px;
+    }
+    .t-avatar {
+      width: 48px;
+      height: 48px;
+    }
+    .entry-top h2 {
+      font-size: clamp(24px, 7vw, 32px);
+    }
+    .entry-note {
+      font-size: 16px;
+    }
+    .step {
+      padding: 24px 0;
     }
     .step-title {
-      font-size: 20px;
+      font-size: 18px;
+    }
+    .step-body {
+      font-size: 14px;
+    }
+    .guardrail-sm {
+      font-size: 12px;
+      padding: 12px 16px;
+    }
+    .final-cta h2 {
+      font-size: clamp(28px, 8vw, 40px);
+    }
+    .webinar h3 {
+      font-size: 28px;
+    }
+    .webinar-sub {
+      font-size: 15px;
+    }
+    footer { 
+      padding: 24px 16px;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+    footer .logo {
+      font-size: 14px;
+    }
+    footer p {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
+      padding: 40px 12px; 
+    }
+    .hero { 
+      padding: 28px 12px 36px; 
+    }
+    .t-slideshow-wrap {
+      padding: 0 32px;
+    }
+    .shift-list,
+    .checklist {
+      padding: 20px 16px;
+    }
+    .steps {
+      padding-left: 28px;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      font-size: 12px;
+      left: -28px;
     }
   }
 </style>
@@ -1663,10 +2062,8 @@
     <p class="hero-sub">A cohort that fast-tracks your growth. Turn a 10-year climb into a 2-year leap.</p>
     <div class="hero-cta">
       <div class="hero-cta-group">
-        <a href="#apply" class="btn-primary"><span>Request Your Seat</span> →</a>
-        <a href="#program" class="btn-outline">Learn More →</a>
+        <a href="#" class="btn-primary" id="openApplyModal"><span>Request Your Seat</span> →</a>
       </div>
-      <div class="hero-badge">Join <strong>1000+ women</strong> claiming their seat at the table</div>
     </div>
   </div>
   <div class="hero-right">
@@ -1674,9 +2071,9 @@
       <img src="120815570.png" alt="100 Board Members">
       <a href="#testimonials" class="hero-right-cta">See Success Stories</a>
     </div>
-    <div class="hero-video-wrap">
-      <iframe src="https://www.youtube.com/embed/HPAP0eBHauk?autoplay=1&mute=1" title="100 Board Members" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+  </div>
+  <div class="hero-video-wrap">
+    <iframe src="https://www.youtube.com/embed/HPAP0eBHauk?autoplay=1&mute=1" title="100 Board Members" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
   </div>
 </section>
@@ -1760,7 +2157,7 @@
       <p class="intro">You're doing more than your title reflects, and it's time that shifted.</p>
     </div>
     <div class="for-who-requirements reveal">
-      <div class="guardrail-sm">Minimum 8 years professional experience required</div>
+      <div class="guardrail-sm">Minimum 8 years of professional experience required</div>
       <ul class="checklist">
         <li><span class="check">✦</span>You're targeting next-level leadership in the next 2–3 years, not just someday.</li>
         <li><span class="check">✦</span>You want a meaningful compensation leap, not small increments.</li>
@@ -1831,8 +2228,11 @@
     <span class="eyebrow">Real results. Real women.</span>
     <h2>In their words.</h2>
   </div>
-  <div class="t-grid">
-    <div class="t-card reveal">
+  <div class="t-slideshow-wrap">
+    <button class="t-slide-btn t-prev" id="tPrev" aria-label="Previous">←</button>
+    <div class="t-slideshow">
+      <div class="t-track" id="tTrack">
+    <div class="t-card t-slide">
       <div class="t-headline">"I grew more in 3 years than I had in the previous 10."</div>
       <p class="t-body">I started stepping into conversations I used to hesitate to enter. I realized I had been operating below my potential — not because I lacked capability, but because I had never been trained to think at that level.</p>
       <div class="t-author">
@@ -1843,7 +2243,7 @@
         </div>
       </div>
     </div>
-    <div class="t-card reveal">
+    <div class="t-card t-slide">
       <div class="t-headline">"I took on 2x the responsibility and felt steady."</div>
       <p class="t-body">I took on 2x the responsibility and felt steady and confident through the transition. Building my profile changed how I positioned myself — it gave me greater clarity, stronger conviction, and a sharper sense of direction. It directly influenced the kind of roles I was considered for and the conversations I was invited into.</p>
       <div class="t-author">
@@ -1854,7 +2254,7 @@
         </div>
       </div>
     </div>
-    <div class="t-card reveal">
+    <div class="t-card t-slide">
       <div class="t-headline">"Often the only woman in the room. The program changed that."</div>
       <p class="t-body">I needed more than competence. I needed strategic confidence and clarity under pressure. It changed how I think at senior levels and how I handle challenges.</p>
       <div class="t-author">
@@ -1865,7 +2265,7 @@
         </div>
       </div>
     </div>
-    <div class="t-card reveal">
+    <div class="t-card t-slide">
       <div class="t-headline">"Zero to ₹30 crore. One state to fourteen. In two years."</div>
       <p class="t-body">I joined at a turning point — moving from a senior corporate role into entrepreneurship. The shift was not just strategic, it was personal. I became clearer, more decisive, and far more confident in handling pressure. What stayed with me most was the mindset shift. It changed how I lead, how I respond, and how I grow.</p>
       <div class="t-author">
@@ -1876,7 +2276,11 @@
         </div>
       </div>
     </div>
+      </div>
+    </div>
+    <button class="t-slide-btn t-next" id="tNext" aria-label="Next">→</button>
   </div>
+  <div class="t-dots" id="tDots"></div>
 </section>
 
 
@@ -1929,7 +2333,7 @@
   <span class="cta-eyebrow">The moment is now</span>
   <h2>Do you believe you are ready for the seat?</h2>
   <p class="cta-sub">Then don't wait for someone to hand you the next level.</p>
-  <a href="#" class="btn-cta">Request Your Seat →</a>
+  <a href="#" class="btn-cta" id="openApplyModalCta">Request Your Seat →</a>
 </section>
 
 
@@ -1957,6 +2361,102 @@
   <p>© 2025 100 Board Members. All rights reserved.</p>
 </footer>
 
+<!-- ── APPLICATION MODAL ── -->
+<div class="modal-overlay" id="applyModal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <h2 class="modal-title">100 Board Members</h2>
+    <p class="modal-subtitle">Apply to the 100 Board Members Program</p>
+    <div class="modal-intro">
+      <p>100 Board Members is not open access.</p>
+      <p>This application evaluates whether you are ready to move from capability to command. We review leadership maturity, scope of influence, and your intent to step into larger decision-making roles within the next 2–3 years.</p>
+      <p>If shortlisted, you will be invited for a focused diagnostic conversation prior to final confirmation.</p>
+    </div>
+    <form id="applyForm" class="modal-form">
+      <div class="modal-section">
+        <h3>Section 1 — Contact & Background</h3>
+        <div class="modal-field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="Your full name">
+        </div>
+        <div class="modal-field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="modal-field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Section 2 — Eligibility & Scope</h3>
+        <div class="modal-field">
+          <label>1. Total years of full-time professional experience</label>
+          <p class="hint">Note: Applicants with fewer than 8 years of experience are not eligible.</p>
+          <div class="modal-radio-group">
+            <label><input type="radio" name="experience" value="8-10" required> 8–10 years</label>
+            <label><input type="radio" name="experience" value="11-15"> 11–15 years</label>
+            <label><input type="radio" name="experience" value="15+"> 15+ years</label>
+          </div>
+        </div>
+        <div class="modal-field">
+          <label for="designation">2. Current designation / title</label>
+          <input type="text" id="designation" name="designation" required placeholder="e.g. Senior Manager, Director">
+        </div>
+        <div class="modal-field">
+          <label for="organisation">3. Current organisation</label>
+          <input type="text" id="organisation" name="organisation" required placeholder="Company name">
+        </div>
+        <div class="modal-field">
+          <label for="industry">4. Current industry</label>
+          <input type="text" id="industry" name="industry" required placeholder="e.g. Technology, Finance">
+        </div>
+        <div class="modal-field">
+          <label>5. Yearly income range</label>
+          <div class="modal-radio-group">
+            <label><input type="radio" name="income" value="<10L" required> Less than ₹10 Lakhs</label>
+            <label><input type="radio" name="income" value="10-15L"> ₹10L – ₹15L</label>
+            <label><input type="radio" name="income" value="15-25L"> ₹15L – ₹25L</label>
+            <label><input type="radio" name="income" value="25-50L"> ₹25L – ₹50L</label>
+            <label><input type="radio" name="income" value=">50L"> Above ₹50L</label>
+          </div>
+        </div>
+        <div class="modal-field">
+          <label>6. Current scope of responsibility</label>
+          <p class="hint">Select the closest description:</p>
+          <div class="modal-radio-group">
+            <label><input type="radio" name="scope" value="individual" required> Individual contributor</label>
+            <label><input type="radio" name="scope" value="small-team"> Managing a small team (1–10 members)</label>
+            <label><input type="radio" name="scope" value="team-function"> Leading a team, function, or department</label>
+            <label><input type="radio" name="scope" value="cross-functional"> Cross-functional leadership responsibility</label>
+            <label><input type="radio" name="scope" value="pnl"> Direct P&L / revenue / cost accountability</label>
+            <label><input type="radio" name="scope" value="others"> Others</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h3>Section 3 — Readiness & Vision</h3>
+        <div class="modal-field">
+          <label for="q7">7. Why are you applying to 100BM at this point in your career?</label>
+          <p class="hint">What tension, plateau, shift, or exposure in the last 12–18 months makes this moment different for you? (150–200 words)</p>
+          <textarea id="q7" name="q7" required placeholder="Share your story..."></textarea>
+        </div>
+        <div class="modal-field">
+          <label for="q8">8. Where do you want to see yourself in the next 3 years?</label>
+          <p class="hint">Be specific about role, authority, scope, or enterprise exposure — not just title or salary. (150 words)</p>
+          <textarea id="q8" name="q8" required placeholder="Describe your vision..."></textarea>
+        </div>
+        <div class="modal-field">
+          <label for="q9">9. What are the top challenges you go through as a leader today?</label>
+          <p class="hint">Think about the gaps between where you are and where you want to be — in terms of influence, visibility, decision-making, or how you're perceived. (200 words)</p>
+          <textarea id="q9" name="q9" required placeholder="Describe your challenges..."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="modal-submit">Submit Application</button>
+    </form>
+  </div>
+</div>
+
 <script>
   // Scroll reveal animation - triggers when element is 10% visible
   const observerOptions = {
@@ -1975,11 +2475,57 @@
 
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  // Application modal
+  const applyModal = document.getElementById('applyModal');
+  const modalClose = document.getElementById('modalClose');
+  const openApplyModal = document.getElementById('openApplyModal');
+  const openApplyModalCta = document.getElementById('openApplyModalCta');
+  const applyForm = document.getElementById('applyForm');
+
+  const openModal = () => {
+    if (applyModal) {
+      applyModal.classList.add('open');
+      applyModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+  const closeModal = () => {
+    if (applyModal) {
+      applyModal.classList.remove('open');
+      applyModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+
+  if (openApplyModal) openApplyModal.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+  if (openApplyModalCta) openApplyModalCta.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (applyModal) {
+    applyModal.addEventListener('click', (e) => { if (e.target === applyModal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && applyModal.classList.contains('open')) closeModal(); });
+  }
+  if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      alert('Thank you for your application. We will review shortly and get back to you.');
+      closeModal();
+      applyForm.reset();
+    });
+  }
+  if (window.location.hash === '#apply') openModal();
+
+  // Smooth scroll for anchor links (except apply modal triggers)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    if (anchor.id === 'openApplyModal' || anchor.id === 'openApplyModalCta') return;
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#apply') {
+        e.preventDefault();
+        openModal();
+        return;
+      }
+      e.preventDefault();
+      const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({
           behavior: 'smooth',
@@ -1988,6 +2534,79 @@
       }
     });
   });
+
+  // Testimonial slideshow - auto-advancing carousel
+  const tTrack = document.getElementById('tTrack');
+  const tPrev = document.getElementById('tPrev');
+  const tNext = document.getElementById('tNext');
+  const tDots = document.getElementById('tDots');
+  const tSlideshowWrap = document.querySelector('.t-slideshow-wrap');
+  const tSlides = document.querySelectorAll('.t-slide');
+
+  if (tTrack && tPrev && tNext && tSlides.length) {
+    let tIndex = 0;
+    const tTotal = tSlides.length;
+    const autoInterval = 5500;
+    let autoTimer;
+
+    const updateSlide = () => {
+      tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
+      if (tDots) {
+        tDots.querySelectorAll('.t-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === tIndex);
+        });
+      }
+      tPrev.disabled = tIndex === 0;
+      tNext.disabled = false;
+    };
+
+    const goNext = () => {
+      tIndex = (tIndex + 1) % tTotal;
+      updateSlide();
+    };
+
+    const startAuto = () => {
+      autoTimer = setInterval(goNext, autoInterval);
+    };
+    const stopAuto = () => clearInterval(autoTimer);
+
+    for (let i = 0; i < tTotal; i++) {
+      const dot = document.createElement('button');
+      dot.className = 't-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        tIndex = i;
+        updateSlide();
+        stopAuto();
+        startAuto();
+      });
+      tDots.appendChild(dot);
+    }
+
+    tPrev.addEventListener('click', () => {
+      if (tIndex > 0) {
+        tIndex--;
+        updateSlide();
+      }
+      stopAuto();
+      startAuto();
+    });
+    tNext.addEventListener('click', () => {
+      tIndex = (tIndex + 1) % tTotal;
+      updateSlide();
+      stopAuto();
+      startAuto();
+    });
+
+    if (tSlideshowWrap) {
+      tSlideshowWrap.addEventListener('mouseenter', stopAuto);
+      tSlideshowWrap.addEventListener('mouseleave', startAuto);
+    }
+
+    tPrev.disabled = true;
+    updateSlide();
+    startAuto();
+  }
 </script>
 
 </body>
