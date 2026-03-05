@@ -31,6 +31,11 @@
     overflow-x: hidden;
     line-height: 1.6;
   }
+  
+  /* Global smooth transitions */
+  a, button, .btn-primary, .btn-outline, .what-card, .prog-card, .t-card, .step {
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
 
   /* ── TYPOGRAPHY ── */
   h1, h2, h3, .display {
@@ -164,7 +169,7 @@
     display: flex; 
     flex-direction: column; 
     justify-content: center;
-    padding: 40px 24px 40px; 
+    padding: 60px 40px 60px; 
     position: relative; 
     overflow: hidden;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a0f0f 50%, #0d0a0a 100%);
@@ -187,7 +192,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 40px;
+    gap: 64px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -199,12 +204,13 @@
     position: relative;
     z-index: 1;
     min-width: 0;
+    padding-right: 24px;
   }
 
   .hero-right {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 28px;
     min-width: 0;
     opacity: 0;
     animation: fadeInUp 0.8s 0.5s ease forwards;
@@ -241,30 +247,31 @@
     letter-spacing: 0.3em; 
     text-transform: uppercase; 
     color: var(--scarlet); 
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
   }
   
   .hero-brand {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(18px, 2.5vw, 24px); 
+    font-size: clamp(16px, 2vw, 22px); 
     font-weight: 600;
     letter-spacing: 0.2em; 
     text-transform: uppercase; 
     color: var(--white); 
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     opacity: 0;
     animation: fadeInUp 0.8s 0.2s ease forwards;
   }
   
   .hero-tagline {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(40px, 7vw, 90px); 
+    font-size: clamp(36px, 5.5vw, 72px); 
     font-weight: 800;
     color: var(--white); 
-    line-height: 0.9; 
-    margin-bottom: 24px;
+    line-height: 1.05; 
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     opacity: 0;
     animation: fadeInUp 0.8s 0.4s ease forwards;
@@ -280,9 +287,9 @@
     font-size: 17px; 
     font-weight: 300;
     color: rgba(255, 255, 255, 0.9); 
-    max-width: 100%; 
-    line-height: 1.6; 
-    margin-bottom: 32px;
+    max-width: 420px; 
+    line-height: 1.65; 
+    margin-bottom: 36px;
     opacity: 0;
     animation: fadeInUp 0.8s 0.6s ease forwards;
   }
@@ -295,7 +302,7 @@
   .hero-cta-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
   }
   
@@ -331,64 +338,13 @@
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.05em;
-    margin-top: 24px;
+    margin-top: 32px;
     opacity: 0;
     animation: fadeInUp 0.8s 1s ease forwards;
   }
   
   .hero-badge strong {
     color: var(--scarlet);
-  }
-  
-  .hero-social-proof {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 32px;
-    opacity: 0;
-    animation: fadeInUp 0.8s 1s ease forwards;
-  }
-  
-  .hero-avatars {
-    display: flex;
-  }
-  
-  .hero-avatars img {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--black);
-    margin-left: -14px;
-    transition: transform 0.2s ease;
-    position: relative;
-  }
-  
-  .hero-avatars img:first-child {
-    margin-left: 0;
-  }
-  
-  .hero-avatars img:hover {
-    transform: scale(1.15);
-    z-index: 2;
-  }
-  
-  .hero-social-text {
-    font-family: 'Fira Sans', sans-serif;
-  }
-  
-  .hero-social-text strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--white);
-    line-height: 1.2;
-  }
-  
-  .hero-social-text span {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
   }
   
   .hero-right-cta {
@@ -571,7 +527,7 @@
     vertical-align: bottom; 
     overflow: hidden;
     height: 1.1em; 
-    min-width: 280px;
+    min-width: 340px;
   }
   
   .blink-word {
@@ -869,243 +825,6 @@
   }
 
   /* ══════════════════════════
-     SECTION 4.5 — BEGIN YOUR JOURNEY
-  ══════════════════════════ */
-  .journey {
-    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
-    padding: 120px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .journey::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    left: -10%;
-    width: 50%;
-    height: 80%;
-    background: linear-gradient(225deg, rgba(245, 41, 41, 0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  
-  .journey-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .journey-header {
-    margin-bottom: 48px;
-  }
-  
-  .journey .eyebrow {
-    color: var(--scarlet);
-  }
-  
-  .journey h2 {
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(40px, 6vw, 72px);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 24px;
-    text-transform: uppercase;
-  }
-  
-  .journey-desc {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 19px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.8;
-    max-width: 600px;
-  }
-  
-  .journey-desc a {
-    color: var(--scarlet);
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid var(--scarlet);
-    transition: all 0.3s ease;
-  }
-  
-  .journey-desc a:hover {
-    opacity: 0.9;
-  }
-  
-  .journey-carousel-wrap {
-    position: relative;
-    margin: 48px 0 40px;
-    overflow: hidden;
-  }
-  
-  .journey-carousel {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 8px 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .journey-carousel::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .journey-card {
-    flex: 0 0 320px;
-    height: 380px;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-    scroll-snap-align: start;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid transparent;
-  }
-  
-  .journey-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  }
-  
-  .journey-card.active {
-    border-color: var(--scarlet);
-    box-shadow: 0 0 20px rgba(245, 41, 41, 0.3);
-    transform: scale(1.02);
-  }
-  
-  .journey-card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(5px);
-    transition: filter 0.4s ease, transform 0.5s ease;
-  }
-  
-  .journey-card:hover .journey-card-bg {
-    transform: scale(1.1);
-  }
-  .journey-card.active .journey-card-bg {
-    transform: scale(1.1);
-    filter: blur(0);
-  }
-  
-  .journey-card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
-    transition: background 0.5s ease;
-  }
-  
-  .journey-card.active .journey-card-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
-  }
-  
-  .journey-card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 32px 28px;
-    z-index: 2;
-  }
-  
-  .journey-card-prefix {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 8px;
-  }
-  
-  .journey-card-title {
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: 28px;
-    font-weight: 300;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-  
-  .journey-card-title strong {
-    font-weight: 800;
-  }
-  
-  .journey-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 40px;
-  }
-  
-  .journey-arrow {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 20px;
-  }
-  
-  .journey-arrow:hover {
-    background: var(--scarlet);
-    border-color: var(--scarlet);
-    transform: scale(1.05);
-  }
-  
-  .journey-arrow:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-  
-  .journey-arrow:disabled:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: none;
-  }
-  
-  .journey-select-btn {
-    padding: 18px 48px;
-    background: var(--scarlet);
-    color: var(--white);
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-  }
-  
-  .journey-select-btn:hover {
-    background: var(--white);
-    color: var(--scarlet);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(245, 41, 41, 0.4);
-  }
-
-  /* ══════════════════════════
      SECTION 5 — INSIDE THE PROGRAM
   ══════════════════════════ */
   .program { 
@@ -1231,112 +950,6 @@
     font-weight: 300;
     color: rgba(255, 255, 255, 0.9); 
     line-height: 1.8;
-  }
-
-  /* ══════════════════════════
-     SECTION 5.5 — CASE STUDIES OF SUCCESS
-  ══════════════════════════ */
-  .case-studies {
-    background: linear-gradient(165deg, #0f0a0a 0%, #1a0d0d 25%, #251212 50%, #1f0e0e 75%, #150a0a 100%);
-    padding: 120px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .case-studies-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-  }
-  
-  .case-studies-num {
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(72px, 12vw, 120px);
-    font-weight: 800;
-    color: var(--scarlet);
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-  
-  .case-studies h2 {
-    font-family: 'Gemunu Libre', sans-serif;
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 24px;
-    text-transform: uppercase;
-  }
-  
-  .case-studies-desc {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.8;
-    max-width: 560px;
-    margin: 0 auto 40px;
-  }
-  
-  .case-studies-desc a {
-    color: var(--scarlet);
-    text-decoration: underline;
-    font-weight: 500;
-  }
-  
-  .case-studies-desc a:hover {
-    text-decoration: none;
-  }
-  
-  .case-studies .btn-outline {
-    border-color: var(--scarlet);
-    color: var(--scarlet);
-  }
-  
-  .case-studies .btn-outline:hover {
-    background: var(--scarlet);
-    color: var(--white);
-  }
-  
-  .case-studies-collage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-  
-  .case-studies-collage img {
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    border-radius: 16px;
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  }
-  
-  .case-studies-collage img:nth-child(1) { top: 8%; left: 5%; opacity: 1; }
-  .case-studies-collage img:nth-child(2) { top: 15%; right: 12%; opacity: 0.85; }
-  .case-studies-collage img:nth-child(3) { top: 60%; left: 8%; opacity: 0.7; }
-  .case-studies-collage img:nth-child(4) { bottom: 15%; right: 8%; opacity: 0.9; }
-  .case-studies-collage img:nth-child(5) { top: 25%; left: 15%; opacity: 0.5; }
-  .case-studies-collage img:nth-child(6) { top: 70%; right: 15%; opacity: 0.55; }
-  .case-studies-collage img:nth-child(7) { bottom: 25%; left: 20%; opacity: 0.65; }
-  .case-studies-collage img:nth-child(8) { top: 10%; right: 25%; opacity: 0.45; }
-  .case-studies-collage img:nth-child(9) { bottom: 10%; right: 25%; opacity: 0.6; }
-  .case-studies-collage img:nth-child(10) { top: 45%; left: 3%; opacity: 0.4; }
-  .case-studies-collage img:nth-child(11) { top: 35%; right: 5%; opacity: 0.5; }
-  .case-studies-collage img:nth-child(12) { bottom: 35%; left: 12%; opacity: 0.45; }
-  
-  @media (max-width: 768px) {
-    .case-studies-collage img {
-      width: 90px;
-      height: 90px;
-    }
   }
 
   /* ══════════════════════════
@@ -1522,35 +1135,39 @@
   }
   
   .steps {
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px; 
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 800px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    padding-left: 40px;
+    border-left: 3px solid rgba(255, 255, 255, 0.15);
   }
   
   .step { 
-    padding: 48px 32px; 
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 40px 0;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
   }
   
   .step:hover { 
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--scarlet);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(245, 41, 41, 0.15);
+    padding-left: 16px;
+  }
+  
+  .step:hover .step-num {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 8px 28px rgba(245, 41, 41, 0.4);
   }
   
   .step-num {
-    display: inline-flex;
+    flex-shrink: 0;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 56px;
@@ -1558,21 +1175,29 @@
     background: var(--scarlet);
     border-radius: 50%;
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 18px; 
+    font-size: 16px; 
     font-weight: 800;
     color: var(--white); 
-    margin-bottom: 28px;
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    left: -40px;
+    top: 40px;
+    transform: translateX(-50%);
+    z-index: 2;
     box-shadow: 0 4px 20px rgba(245, 41, 41, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .step-content {
+    flex: 1;
+    padding-top: 4px;
   }
   
   .step-title {
     font-family: 'Gemunu Libre', sans-serif;
-    font-size: 28px; 
+    font-size: 24px; 
     font-weight: 700;
     color: var(--white); 
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     text-transform: uppercase;
   }
   
@@ -1814,17 +1439,42 @@
     to { opacity: 1; }
   }
   
-  /* Scroll reveal */
+  /* Scroll reveal - smooth entrance */
   .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
   .reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
+  
+  /* Staggered reveal delays for grid items */
+  .what-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .what-card.reveal:nth-child(2) { transition-delay: 0.08s; }
+  .what-card.reveal:nth-child(3) { transition-delay: 0.16s; }
+  .what-card.reveal:nth-child(4) { transition-delay: 0.24s; }
+  .what-card.reveal:nth-child(5) { transition-delay: 0.32s; }
+  .what-card.reveal:nth-child(6) { transition-delay: 0.4s; }
+  
+  .prog-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .prog-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .prog-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .prog-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+  .prog-card.reveal:nth-child(5) { transition-delay: 0.4s; }
+  
+  .t-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .t-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .t-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .t-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+  
+  .step.reveal:nth-child(1) { transition-delay: 0s; }
+  .step.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .step.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .step.reveal:nth-child(4) { transition-delay: 0.3s; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
@@ -1876,21 +1526,24 @@
       grid-template-columns: 1fr; 
     }
     .steps { 
-      grid-template-columns: repeat(2, 1fr); 
+      padding-left: 36px;
+    }
+    .step-num {
+      left: -36px;
     }
   }
   
   @media (max-width: 768px) {
-    .hero, .authority, .breakthrough, .for-who, .journey, .program, .case-studies, .testimonials, .entry, .final-cta, .webinar { 
+    .hero, .authority, .breakthrough, .for-who, .program, .testimonials, .entry, .final-cta, .webinar { 
       padding: 80px 24px; 
     }
     .hero { 
-      padding: 32px 20px 40px; 
+      padding: 48px 24px 56px; 
       min-height: 100vh;
     }
     .hero-inner {
       flex-direction: column;
-      gap: 40px;
+      gap: 48px;
     }
     .hero-right {
       max-width: 100%;
@@ -1903,24 +1556,29 @@
     .hero-tagline {
       font-size: clamp(40px, 12vw, 80px);
     }
-    .journey-card {
-      flex: 0 0 280px;
-    }
     .what-grid, .program-grid-3 { 
       grid-template-columns: 1fr; 
     }
     .steps { 
-      grid-template-columns: 1fr; 
+      padding-left: 32px;
+      max-width: 100%;
     }
     .step { 
-      padding: 40px 32px;
+      padding: 32px 0;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      font-size: 14px;
+      left: -32px;
+      top: 32px;
     }
     .shift-list,
     .checklist {
       padding: 32px;
     }
     .blink-wrap {
-      min-width: 200px;
+      min-width: 280px;
       height: 1.2em;
     }
     .blink-word {
@@ -1983,7 +1641,7 @@
       font-size: 22px;
     }
     .step-title {
-      font-size: 26px;
+      font-size: 20px;
     }
   }
 </style>
@@ -2009,18 +1667,6 @@
         <a href="#program" class="btn-outline">Learn More →</a>
       </div>
       <div class="hero-badge">Join <strong>1000+ women</strong> claiming their seat at the table</div>
-      <div class="hero-social-proof">
-        <div class="hero-avatars">
-          <img src="assets/testimonials/susma.png" alt="">
-          <img src="assets/testimonials/ANU.png" alt="">
-          <img src="assets/testimonials/harvinder.png" alt="">
-          <img src="assets/testimonials/minal.png" alt="">
-        </div>
-        <div class="hero-social-text">
-          <strong>Over 1000+ women leaders</strong>
-          <span>growing since 2020</span>
-        </div>
-      </div>
     </div>
   </div>
   <div class="hero-right">
@@ -2030,7 +1676,6 @@
     </div>
     <div class="hero-video-wrap">
       <iframe src="https://www.youtube.com/embed/HPAP0eBHauk?autoplay=1&mute=1" title="100 Board Members" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <a href="#apply" class="hero-right-cta">Apply Now</a>
     </div>
   </div>
   </div>
@@ -2128,77 +1773,6 @@
 
 
 <!-- ══════════════════════════
-     BEGIN YOUR JOURNEY
-══════════════════════════ -->
-<section class="journey">
-  <div class="journey-inner">
-    <div class="journey-header reveal">
-      <span class="eyebrow">Begin your journey</span>
-      <h2>A better you</h2>
-      <p class="journey-desc">Claim your authority, elevate your career, establish board visibility, and more. <a href="#apply">Tell us your goals</a>, and become the leader you're meant to be.</p>
-    </div>
-    <div class="journey-carousel-wrap">
-      <div class="journey-carousel" id="journeyCarousel">
-        <div class="journey-card active" data-path="career">
-          <img class="journey-card-bg" src="assets/testimonials/susma.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm seeking</div>
-            <div class="journey-card-title"><strong>CAREER GROWTH</strong></div>
-          </div>
-        </div>
-        <div class="journey-card" data-path="authority">
-          <img class="journey-card-bg" src="assets/testimonials/ANU.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm looking to</div>
-            <div class="journey-card-title"><strong>CLAIM MY AUTHORITY</strong></div>
-          </div>
-        </div>
-        <div class="journey-card" data-path="board">
-          <img class="journey-card-bg" src="assets/testimonials/harvinder.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm seeking</div>
-            <div class="journey-card-title"><strong>BOARD VISIBILITY</strong></div>
-          </div>
-        </div>
-        <div class="journey-card" data-path="compensation">
-          <img class="journey-card-bg" src="assets/testimonials/minal.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm ready for</div>
-            <div class="journey-card-title"><strong>COMPENSATION LEAP</strong></div>
-          </div>
-        </div>
-        <div class="journey-card" data-path="leadership">
-          <img class="journey-card-bg" src="assets/testimonials/susma.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm moving to</div>
-            <div class="journey-card-title"><strong>NEXT-LEVEL LEADERSHIP</strong></div>
-          </div>
-        </div>
-        <div class="journey-card" data-path="decision">
-          <img class="journey-card-bg" src="assets/testimonials/ANU.png" alt="">
-          <div class="journey-card-overlay"></div>
-          <div class="journey-card-content">
-            <div class="journey-card-prefix">I'm ready to go from</div>
-            <div class="journey-card-title"><strong>EXECUTOR TO DECISION-MAKER</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="journey-nav">
-      <button class="journey-arrow" id="journeyPrev" aria-label="Previous">←</button>
-      <a href="#apply" class="journey-select-btn">Select path →</a>
-      <button class="journey-arrow" id="journeyNext" aria-label="Next">→</button>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════
      SECTION 5 — INSIDE THE PROGRAM
 ══════════════════════════ -->
 <section class="program" id="program">
@@ -2245,33 +1819,6 @@
         <div class="meth-body">Ongoing activity sessions to sharpen the capabilities and tactics covered across the program.</div>
       </div>
     </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════
-     CASE STUDIES OF SUCCESS
-══════════════════════════ -->
-<section class="case-studies">
-  <div class="case-studies-collage">
-    <img src="assets/testimonials/susma.png" alt="">
-    <img src="assets/testimonials/ANU.png" alt="">
-    <img src="assets/testimonials/harvinder.png" alt="">
-    <img src="assets/testimonials/minal.png" alt="">
-    <img src="assets/testimonials/susma.png" alt="">
-    <img src="assets/testimonials/ANU.png" alt="">
-    <img src="assets/testimonials/harvinder.png" alt="">
-    <img src="assets/testimonials/minal.png" alt="">
-    <img src="assets/testimonials/susma.png" alt="">
-    <img src="assets/testimonials/ANU.png" alt="">
-    <img src="assets/testimonials/harvinder.png" alt="">
-    <img src="assets/testimonials/minal.png" alt="">
-  </div>
-  <div class="case-studies-inner reveal">
-    <div class="case-studies-num">1,000+</div>
-    <h2>Case studies of success</h2>
-    <p class="case-studies-desc">100 Board Members has helped women leaders claim their authority and accelerate their careers. Browse success stories and real transformations from women who have taken the leap.</p>
-    <a href="#testimonials" class="btn-outline">Read success stories →</a>
   </div>
 </section>
 
@@ -2339,29 +1886,37 @@
 <section class="entry">
   <div class="entry-top reveal">
     <span class="eyebrow">Entry</span>
-    <h2>Entry into 100 Board Members is intentional.</h2>
+    <h2>Entry into 100 Board Members is selective by design.</h2>
     <p class="entry-note">Not everyone who applies is selected.</p>
   </div>
-  <div class="steps reveal">
-    <div class="step">
+  <div class="steps">
+    <div class="step reveal">
       <span class="step-num">01</span>
-      <div class="step-title">Application</div>
-      <div class="step-body">Complete the detailed selection form outlining your experience, scope of impact, and next-level intent.</div>
+      <div class="step-content">
+        <div class="step-title">Application</div>
+        <div class="step-body">Complete the detailed selection form outlining your experience, scope of impact, and next-level intent.</div>
+      </div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">02</span>
-      <div class="step-title">Review</div>
-      <div class="step-body">Selection is based on substance, demonstrated experience, and readiness.</div>
+      <div class="step-content">
+        <div class="step-title">Review</div>
+        <div class="step-body">Selection is based on substance, demonstrated experience, and readiness.</div>
+      </div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">03</span>
-      <div class="step-title">Diagnostic</div>
-      <div class="step-body">Shortlisted applicants are invited for a focused diagnostic discussion. Not an interview — a calibration.</div>
+      <div class="step-content">
+        <div class="step-title">Diagnostic</div>
+        <div class="step-body">Shortlisted applicants are invited for a focused diagnostic discussion. Not an interview — a calibration.</div>
+      </div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">04</span>
-      <div class="step-title">Confirmation</div>
-      <div class="step-body">Applications are reviewed based on readiness and experience. Selected candidates receive formal confirmation and enrolment details.</div>
+      <div class="step-content">
+        <div class="step-title">Confirmation</div>
+        <div class="step-body">Applications are reviewed based on readiness and experience. Selected candidates receive formal confirmation and enrolment details.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -2370,7 +1925,7 @@
 <!-- ══════════════════════════
      SECTION 8 — FINAL CTA
 ══════════════════════════ -->
-<section class="final-cta" id="apply">
+<section class="final-cta reveal" id="apply">
   <span class="cta-eyebrow">The moment is now</span>
   <h2>Do you believe you are ready for the seat?</h2>
   <p class="cta-sub">Then don't wait for someone to hand you the next level.</p>
@@ -2381,7 +1936,7 @@
 <!-- ══════════════════════════
      WEBINAR
 ══════════════════════════ -->
-<section class="webinar">
+<section class="webinar reveal">
   <h3>Know More</h3>
   <p class="webinar-sub">Some leaders prefer to first understand how enterprise authority is built and evaluated before committing.</p>
   <p class="webinar-explore">We periodically host closed-door Executive Briefings where we explore:</p>
@@ -2397,17 +1952,17 @@
 
 
 <!-- ── FOOTER ── -->
-<footer>
+<footer class="reveal">
   <div class="logo">100 Board Members</div>
   <p>© 2025 100 Board Members. All rights reserved.</p>
 </footer>
 
 <script>
-  // Scroll reveal animation
+  // Scroll reveal animation - triggers when element is 10% visible
   const observerOptions = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.1
+    rootMargin: '0px 0px 50px 0px',
+    threshold: 0.08
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -2433,46 +1988,6 @@
       }
     });
   });
-
-  // Journey carousel
-  const carousel = document.getElementById('journeyCarousel');
-  const prevBtn = document.getElementById('journeyPrev');
-  const nextBtn = document.getElementById('journeyNext');
-  const cards = document.querySelectorAll('.journey-card');
-
-  if (carousel && prevBtn && nextBtn) {
-    const getScrollAmount = () => cards[0] ? cards[0].offsetWidth + 24 : 344;
-
-    const setActiveCard = (index) => {
-      cards.forEach((c, i) => c.classList.toggle('active', i === index));
-    };
-
-    prevBtn.addEventListener('click', () => {
-      const activeIndex = Array.from(cards).findIndex(c => c.classList.contains('active'));
-      const nextIndex = Math.max(0, activeIndex - 1);
-      setActiveCard(nextIndex);
-      carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
-    nextBtn.addEventListener('click', () => {
-      const activeIndex = Array.from(cards).findIndex(c => c.classList.contains('active'));
-      const nextIndex = Math.min(cards.length - 1, activeIndex + 1);
-      setActiveCard(nextIndex);
-      carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        cards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-      });
-    });
-
-    carousel.addEventListener('scroll', () => {
-      prevBtn.disabled = carousel.scrollLeft <= 0;
-      nextBtn.disabled = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 10;
-    });
-    prevBtn.disabled = true;
-  }
 </script>
 
 </body>
